@@ -22,7 +22,9 @@ class PusherEnv7DOF(mujoco_env.MujocoEnv, utils.EzPickle):
 
     def viewer_setup(self):
         self.viewer.cam.trackbodyid=0
-        self.viewer.cam.distance = 4.0
+        self.viewer.cam.distance = 1.0
+        self.viewer.cam.elevation= -90
+        self.viewer.cam.azimuth= -90
 
     def reset_model(self):
         qpos = self.np_random.uniform(low=-0.1, high=0.1, size=self.model.nq) + self.init_qpos

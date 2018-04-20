@@ -1,0 +1,20 @@
+MuJoCo Pro Trial license activation key, number 110784, type 6.
+
+Issued to leopauly <cnlp@leeds.ac.uk>.
+
+Expires May 12, 2018.
+
+This file activates MuJoCo Pro on a single computer with id:
+LINUX_ebVfHARXSID1_VB5bb74bD77K392BdO312
+
+Do not modify this file. Its entire content, including the
+plain text section, is used by the activation manager.
+
+360ccff8c2c42b61160a4727e00f8043dbc07a489627a10d63a17363b271aeb6
+44e93a11dada7e3f36317762232de2cfbd7ad2561f8f83b09194a99fa0c0f03f
+7e4fbe2614b8e8e1bf60808fbef4ca6e9a4495af519232bf36d06235a5a9cf07
+370896f00d70c2e21d6e43e6fb8ad802a5db598030a11443be34dccaf5efb99a
+a5b6e1d7eab7bfee68fcd6d5d5e68cd3ca3491da9daa10cf1ab43815b90afae6
+88bfb5cd6121b0e44bab90f0389cca0f516e488ce7da5802183716d9a58205d3
+87e2fbd83f990e32cbd8454e14fc9337e15cf939dd51454e718660a2befa2a40
+1ecf4e3ba81b7afa28efb4b7213151e50044c2db7a98b9ddc0c9c8234e240e62
