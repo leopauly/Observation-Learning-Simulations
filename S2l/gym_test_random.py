@@ -5,7 +5,7 @@ import gym
 import matplotlib.pyplot as plt
 
 ## Defining env
-env = gym.make('Pusher7DOF-v1')
+env = gym.make('Pusher3DOFReal-v1')
 print(env.observation_space.shape[0])
 print(env.action_space.shape[0])
 
@@ -22,8 +22,8 @@ def some_random_games_first():
         env.reset()
         env.render(mode='human')
         img=env.render(mode='rgb_array')   # Get the observation
-        #plt.imshow(img)
-        #plt.show()
+        plt.imshow(img)
+        plt.show()
        
 
         # this is each frame, up to 200...but we wont make it that far.

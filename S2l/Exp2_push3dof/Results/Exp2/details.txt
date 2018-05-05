@@ -1,0 +1,7 @@
+The results obtained for the experiment run under following conditions:
+
+1. Activity net trained on continuous frames
+2. Code : optimised
+3. Gym env: Pusher7dofreal : Target brought slightly closer than Exp1, The last link lenght slightly increased
+4. Task: to reach red spot on the table
+5. Num of episodes,rollouts per episode and steps per episode: 100,20,16

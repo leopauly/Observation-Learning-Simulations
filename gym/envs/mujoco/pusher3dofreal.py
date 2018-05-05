@@ -43,6 +43,15 @@ class PusherEnv3DOFReal(mujoco_env.MujocoEnv, utils.EzPickle):
 
     def viewer_setup(self):
         # self.itr = 0
+
+
+        self.viewer.cam.trackbodyid=-1
+        self.viewer.cam.distance = 3.0
+        self.viewer.cam.elevation= -90
+        #self.viewer.cam.azimuth= -90
+        self.viewer.cam.lookat[0]-=2
+        self.viewer.cam.lookat[1]-=1.5
+        '''
         self.viewer.cam.trackbodyid=0
         cam_dist = 3
         if hasattr(self, "_kwargs") and 'cam_dist' in self._kwargs:
@@ -60,7 +69,7 @@ class PusherEnv3DOFReal(mujoco_env.MujocoEnv, utils.EzPickle):
         self.viewer.cam.distance = cam_pos[3]
         self.viewer.cam.elevation = cam_pos[4]
         self.viewer.cam.azimuth = cam_pos[5]
-        self.viewer.cam.trackbodyid=-1
+        self.viewer.cam.trackbodyid=-1 '''
 
     def reset_model(self):
         self.itr = 0
