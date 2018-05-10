@@ -3,13 +3,14 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-
+import numpy as np
 
 y = np.loadtxt("reward_all.txt", unpack=True)
 
 y_new=[y_ for y_ in y if y_!=0]
 x=range(len(y_new))
 print(x,y_new)
+print(np.array(y_new).shape)
 
 plt.figure(1)
 plt.plot(x,y_new)

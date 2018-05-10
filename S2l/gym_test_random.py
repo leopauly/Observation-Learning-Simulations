@@ -5,7 +5,8 @@ import gym
 import matplotlib.pyplot as plt
 
 ## Defining env
-env = gym.make('Pusher3DOFReal-v1')
+#env = gym.make('Pusher3DOFReal-v1') 
+env = gym.make('Pusher7DOF-v1')
 print(env.observation_space.shape[0])
 print(env.action_space.shape[0])
 
@@ -22,12 +23,12 @@ def some_random_games_first():
         env.reset()
         env.render(mode='human')
         img=env.render(mode='rgb_array')   # Get the observation
-        plt.imshow(img)
-        plt.show()
+        #plt.imshow(img)
+        #plt.show()
        
 
         # this is each frame, up to 200...but we wont make it that far.
-        for t in range(10):
+        for t in range(200):
             
             # This will just create a sample action in any environment.
             # In this environment, the action can be 0 or 1, which is left or right
@@ -42,14 +43,15 @@ def some_random_games_first():
             #plt.show()
             
 
-            print(episode,t)
+            #print(episode,t)
 
 
             # this executes the environment with an action, 
             # and returns the observation of the environment, 
             # the reward, if the env is over, and other info.
-            observation, reward, done, info = env.step(action)
-            if done:
-                break
+            observation, reward, done, info = env.step([1,1,1])
+            print(env.get_eval())
+            #if done:
+            #    break
                 
 some_random_games_first()

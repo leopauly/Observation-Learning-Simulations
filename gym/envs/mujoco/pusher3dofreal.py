@@ -104,3 +104,11 @@ class PusherEnv3DOFReal(mujoco_env.MujocoEnv, utils.EzPickle):
             # self.get_body_com("object"),
             # self.get_body_com("goal"),
         ])
+
+    def get_eval(self):
+        #print('arm position ',self.get_body_com("object"))
+        #print('goal position',self.get_body_com("goal"))
+        self.arm_pos=self.get_body_com("object")
+        self.goal_pos=self.get_body_com("goal")
+        self.eval=np.linalg.norm(self.arm_pos-self.goal_pos)
+        return self.eval

@@ -1,0 +1,9 @@
+The results obtained for the experiment run under following conditions:
+Code : gym_push3dof_2.py
+
+
+1. Activity net trained on continuous frames
+2. Code : optimised
+3. Gym env: Pusher7dofreal : Changed view point. Seeing demo in third person (180) and experimenting its own actions in first person (0)
+4. Task: to reach red spot on the table
+5. Num of episodes,rollouts per episode and steps per episode: ,20,16
