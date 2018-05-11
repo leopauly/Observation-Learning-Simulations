@@ -11,7 +11,7 @@ import math
 class Saved_Policy:
     
     def __init__(self,num_states,num_actions):
-        self.policy_savedpath="./policies_saved/Exp2/"
+        self.policy_savedpath="./policies_saved/"
         self.network_graph_name='policy.episode-100.meta'
         self.network_name='policy.episode-100'
         ### policy_net
