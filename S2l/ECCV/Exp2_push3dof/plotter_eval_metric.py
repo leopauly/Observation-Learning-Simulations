@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-y = np.loadtxt("eval_metric_per_rollout.txt", unpack=True)
+y = np.loadtxt("test_eval_metric_per_rollout.txt", unpack=True)
 
 y_new=[y_ for y_ in y if y_!=0]
 x=range(len(y_new))

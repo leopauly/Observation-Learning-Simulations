@@ -12,8 +12,8 @@ class Saved_Policy:
     
     def __init__(self,num_states,num_actions):
         self.policy_savedpath="/home/ironman/S2l_Storage/policies_saved/Exp2/"
-        self.network_graph_name='policy.episode-0.meta'
-        self.network_name='policy.episode-0'
+        self.network_graph_name='policy.episode-100.meta'
+        self.network_name='policy.episode-100'
         ### policy_net
         self.g=tf.Graph()
         with self.g.as_default():
@@ -60,7 +60,7 @@ class Saved_Policy:
         
         #action_tensor = self.sess.graph.get_tensor_by_name('flatten_1/Reshape:0')
         #self.action=np.array(self.sess.run(action_tensor, feed_dict={'Placeholder:0':state_t}))#,K.learning_phase(): 0 }))
-        print (self.action.shape)
+        #print (self.action.shape)
 
         return self.action # self.sess.run(self.actor_model, feed_dict={self.actor_state_in:state_t})  
         

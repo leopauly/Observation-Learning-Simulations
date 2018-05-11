@@ -62,7 +62,7 @@ def main():
                 print ("Printing reward to file")
                 exploration_noise.reset() #reinitializing random noise for action exploration
                 reward_st = np.append(reward_st,reward_per_episode)
-                np.savetxt('episode_reward_classic_ex.txt',reward_st, newline="\n")
+                np.savetxt('episode_reward_trail_pgm.txt',reward_st, newline="\n")
                 print ('\n\n')
                 break
     total_reward+=reward_per_episode            

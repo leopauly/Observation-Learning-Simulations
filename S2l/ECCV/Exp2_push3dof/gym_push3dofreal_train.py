@@ -235,7 +235,7 @@ def s2l():
                 eval_metric=eval_metric.reshape(-1)
                 print('Distance to goal:',eval_metric)    
                 eval_metric_st = np.append(eval_metric_st,eval_metric)           
-                np.savetxt('eval_metric_per_rollout.txt',eval_metric_st, newline="\n")
+                np.savetxt('eval_metric_per_step.txt',eval_metric_st, newline="\n")
 
                 # Storing reward after every rollout
                 reward_st_all = np.append(reward_st_all,reward)
@@ -249,11 +249,12 @@ def s2l():
             #train critic and actor network
             if counter > start_training: 
                     agent.train()
-                    if (((episode)%100)==0):
-                        agent.save_actor(episode)
             print ('\n\n')
             
-            
+            #Saving policy 
+            if ((episode%100)==0 and t==num_rollouts-1):
+                print('saving policy...........................!')
+                agent.save_actor(episode)
 
 
             reward_per_episode+=reward_per_rollout    

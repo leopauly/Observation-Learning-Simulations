@@ -1,0 +1,5 @@
+model_checkpoint_path: "/home/ironman/S2l_Storage/policies_saved/Exp2/policy.episode-300"
+all_model_checkpoint_paths: "/home/ironman/S2l_Storage/policies_saved/Exp2/policy.episode-0"
+all_model_checkpoint_paths: "/home/ironman/S2l_Storage/policies_saved/Exp2/policy.episode-100"
+all_model_checkpoint_paths: "/home/ironman/S2l_Storage/policies_saved/Exp2/policy.episode-200"
+all_model_checkpoint_paths: "/home/ironman/S2l_Storage/policies_saved/Exp2/policy.episode-300"
