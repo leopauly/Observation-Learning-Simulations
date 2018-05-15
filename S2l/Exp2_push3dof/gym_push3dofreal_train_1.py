@@ -57,7 +57,7 @@ cluster_length=16 # Length of one activity
 nb_classes=2 
 feature_size=4608 #8192   #16384  #487 
 #frame_feature_size=
-saved_path='/home/ironman/trained_activity_nets/' 
+saved_path='/home/ironman2/S2l_storage/trained_activity_nets/' 
 demo_folder='./Demo_push_1/'
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
@@ -123,7 +123,7 @@ def demo_array_extractor(demo_vid_path):
 class Vid_Feature:
     
     def __init__(self):
-        self.saved_path='/home/ironman/trained_activity_nets/' 
+        self.saved_path='/home/ironman2/S2l_storage/trained_activity_nets/' 
         self.network_name='activity_model.ckpt-104.meta'
         ### Activity_net
         self.g=tf.Graph()
