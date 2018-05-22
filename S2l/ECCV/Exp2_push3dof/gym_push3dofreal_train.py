@@ -58,8 +58,7 @@ cluster_length=16 # Length of one activity
 nb_classes=2 
 feature_size=4608 #8192   #16384  #487 
 #frame_feature_size=
-saved_path='/home/ironman/trained_activity_nets/' 
-demo_folder='./Demos/_Demo_push_1/'
+demo_folder='./Demos/Demo_push_45deg/'
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 
@@ -124,7 +123,7 @@ def demo_array_extractor(demo_vid_path):
 class Vid_Feature:
     
     def __init__(self):
-        self.saved_path='/home/ironman/trained_activity_nets/' 
+        self.saved_path='/home/ironman2/S2l_storage/trained_activity_nets/' 
         self.network_name='activity_model.ckpt-104.meta'
         ### Activity_net
         self.g=tf.Graph()
@@ -133,8 +132,8 @@ class Vid_Feature:
             self.sess = tf.InteractiveSession(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=False))
             ## Restore model weights from previously saved model
             self.saver = tf.train.import_meta_graph(os.path.join(self.saved_path,self.network_name))
-            self.saver.restore(self.sess, os.path.join(saved_path,'activity_model.ckpt-104'))
-            print("Model restored from file: %s" % saved_path,flush=True)    
+            self.saver.restore(self.sess, os.path.join(self.saved_path,'activity_model.ckpt-104'))
+            print("Model restored from file: %s" % self.saved_path,flush=True)    
 
     ## For extracting activity features
     def feature_extractor(self,vid_np):
