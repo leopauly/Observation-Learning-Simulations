@@ -1,0 +1,9 @@
+The results obtained for the experiment run under following conditions:
+
+1. Activity net trained on continuous frames
+2. Code : gym_push3dofreal_train.py
+3. Gym env: Pusher3dofreal  
+4. Task: to push the red object to blue mark
+5. Num of episodes,rollouts per episode and steps per episode: 185,20,16
+6. Experiment details : Demo from 90deg, Observation from 0deg
+7. Best performance : 500 episode (Sucess rate: 8/10 attempts)

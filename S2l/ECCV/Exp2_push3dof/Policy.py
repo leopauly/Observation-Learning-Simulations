@@ -11,7 +11,7 @@ import math
 class Saved_Policy:
     
     def __init__(self,num_states,num_actions):
-        self.policy_savedpath="/home/ironman2/S2l_storage/policies_saved/Exp2_45deg/"
+        self.policy_savedpath="/home/ironman2/S2l_storage/policies_saved/baseline/Exp2_0deg_0/"
         self.network_graph_name='policy.episode-100.meta'
         self.network_name='policy.episode-100'
         ### policy_net

@@ -16,6 +16,7 @@ class DDPG:
     
     """ Deep Deterministic Policy Gradient Algorithm"""
     def __init__(self,env, is_batch_norm,num_states,num_actions):
+	    
         self.env = env 
         self.num_states = num_states #env.observation_space.shape[0]
         self.num_actions = num_actions# env.action_space.shape[0]
@@ -40,6 +41,8 @@ class DDPG:
         action_min = np.array(env.action_space.low).tolist()        
         action_bounds = [action_max,action_min] 
         self.grad_inv = grad_inverter(action_bounds)
+
+        print('Actual DDPG class loaded')
         
         
     def evaluate_actor(self, state_t):

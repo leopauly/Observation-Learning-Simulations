@@ -50,7 +50,7 @@ class PusherEnv3DOFReal(mujoco_env.MujocoEnv, utils.EzPickle):
         self.viewer.cam.elevation= -90
         self.viewer.cam.azimuth= -90
         self.viewer.cam.lookat[0]-=1.5  #2
-        self.viewer.cam.lookat[1]-=1.5
+        self.viewer.cam.lookat[1]-=1.7
         '''
         self.viewer.cam.trackbodyid=0
         cam_dist = 3

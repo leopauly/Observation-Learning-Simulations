@@ -60,7 +60,7 @@ nb_classes=2
 feature_size=4608 #8192   #16384  #487 
 #frame_feature_size=
 saved_path='/home/ironman2/S2l_storage/trained_activity_nets/' 
-demo_folder='./Demo_push_1/'
+demo_folder='./Demo_push_90deg/'
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 
@@ -207,7 +207,7 @@ def s2l():
 
                 action = agent.get_action(np.reshape(x,[1,num_states]))
                 noise = exploration_noise.noise()
-                action = action[0] + noise #Select action according to current policy and exploration noise
+                #action = action[0] + noise #Select action according to current policy and exploration noise
                 print ('Action at episode-',episode,'rollout-',t, 'step-', i ," :",action)
 
                
