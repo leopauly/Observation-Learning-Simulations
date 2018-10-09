@@ -11,9 +11,10 @@ import math
 class Saved_Policy:
     
     def __init__(self,num_states,num_actions):
-        self.policy_savedpath="/home/ironman2/S2l_storage/policies_saved/baseline/Exp2_0deg_0/"
-        self.network_graph_name='policy.episode-100.meta'
-        self.network_name='policy.episode-100'
+        #self.policy_savedpath="/home/ironman2/Observation-Learning-Simulations/S2l/ECCV/Exp2_push3dof/Results/Exp2_0deg_1/best_policies/"
+        self.policy_savedpath="/home/ironman2/S2l_storage/policies_saved/proposed/Exp2_180deg_0/"     
+        self.network_graph_name='policy.episode-250.meta'
+        self.network_name='policy.episode-250'
         ### policy_net
         self.g=tf.Graph()
         with self.g.as_default():

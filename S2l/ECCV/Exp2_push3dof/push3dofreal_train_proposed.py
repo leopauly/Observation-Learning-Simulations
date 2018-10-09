@@ -41,7 +41,7 @@ assert isinstance(env.observation_space, Box), "observation space must be contin
 assert isinstance(env.action_space, Box), "action space must be continuous"
 
 ## Defining vars for reinfrocement learning algo
-num_episodes=2000
+num_episodes=501
 num_rollouts=20 # Each roll out represent a complete activity : activity could be pushing an object, reaching to a point or similar !
 steps=16 # No of actions taken in a roll out
 is_batch_norm = False #batch normalization switch
@@ -58,7 +58,7 @@ cluster_length=16 # Length of one activity
 nb_classes=2 
 feature_size=4608 #8192   #16384  #487 
 #frame_feature_size=
-demo_folder='./Demos/Demo_push_45deg/'
+demo_folder='./Demos/Demo_push_180deg/'
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 

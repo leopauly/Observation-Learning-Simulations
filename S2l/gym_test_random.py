@@ -5,8 +5,8 @@ import gym
 import matplotlib.pyplot as plt
 
 ## Defining env
-#env = gym.make('Pusher3DOFReal-v1') 
-env = gym.make('Pusher7DOF-v1')
+env = gym.make('Pusher3DOFReal-v1') 
+#env = gym.make('Pusher7DOF-v1')
 print(env.observation_space.shape[0])
 print(env.action_space.shape[0])
 
@@ -49,8 +49,9 @@ def some_random_games_first():
             # this executes the environment with an action, 
             # and returns the observation of the environment, 
             # the reward, if the env is over, and other info.
-            observation, reward, done, info = env.step([1,1,1])
-            print(env.get_eval())
+            observation, reward, done, info = env.step([3,3,3])
+            observation, reward, done, info = env.step([-1,-1,-1])
+            #print(env.get_eval())
             #if done:
             #    break
                 

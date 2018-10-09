@@ -9,7 +9,7 @@ class ActorNet:
     """ Actor Network Model of DDPG Algorithm """
     
     def __init__(self,num_states,num_actions):
-        self.policy_savepath="/home/ironman2/S2l_storage/policies_saved/baseline/Exp2_90deg_0/policy.episode"
+        self.policy_savepath="/home/ironman2/S2l_storage/policies_saved/baseline/Exp2_180deg_1/policy.episode"
         self.g=tf.Graph()
         with self.g.as_default():
             self.sess = tf.InteractiveSession()
