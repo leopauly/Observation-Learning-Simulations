@@ -9,7 +9,9 @@ class ActorNet:
     """ Actor Network Model of DDPG Algorithm """
     
     def __init__(self,num_states,num_actions):
-        self.policy_savepath="/home/ironman2/S2l_storage/policies_saved/test/policy.episode"
+        self.num_states=num_states
+        self.num_actions=num_actions
+        self.policy_savepath="/home/ironman2/S2l_storage/policies_saved/thesis/proposed/push_robo_M2/policy.episode"
         self.g=tf.Graph()
         with self.g.as_default():
             self.sess = tf.InteractiveSession()
@@ -85,7 +87,10 @@ class ActorNet:
     def update_target_actor(self):
         self.sess.run(self.update_target_actor_op)   
 
-    def save_actor_net(self,step):
+    def save_actor_net(self,episode,i_run):
+        num=int(((i_run+(episode/100))*100))
+        save_path = self.saver.save(self.sess, self.policy_savepath, global_step=num)
+        print("Actor/Policy saved in path: %s" % save_path)
         #print(tf.contrib.graph_editor.get_tensors(self.g))   #
         #print('\n\n')
         #print([tensor.name for tensor in tf.get_default_graph().as_graph_def().node ])
@@ -98,8 +103,6 @@ class ActorNet:
         # print(tf.get_default_graph())
         #print("Saving here")
         # with self.sess(graph=self.g) as sess:
-        save_path = self.saver.save(self.sess, self.policy_savepath,global_step=step)
-        print("Actor/Policy saved in path: %s" % save_path)
 
         
         

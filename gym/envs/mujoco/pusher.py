@@ -21,9 +21,19 @@ class PusherEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         return ob, reward, done, dict(reward_dist=reward_dist, reward_ctrl=reward_ctrl)
 
     def viewer_setup(self):
-        self.viewer.cam.trackbodyid=0
-        self.viewer.cam.distance = 4.0
-
+	
+	    ##New camera positions
+        self.viewer.cam.trackbodyid=-1
+        self.viewer.cam.distance=3.0
+        self.viewer.cam.elevation=-90
+        self.viewer.cam.azimuth=90
+        self.viewer.cam.lookat[0]=.17 #2
+        self.viewer.cam.lookat[1]-=0
+        
+	    ##Old camera positions
+        #self.viewer.cam.trackbodyid=0
+        #self.viewer.cam.distance = 4.0
+ 	
     def reset_model(self):
         qpos = self.np_random.uniform(low=-0.1, high=0.1, size=self.model.nq) + self.init_qpos
         while True:
@@ -59,3 +69,11 @@ class PusherEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         #     self.get_body_com("goal"),
         #     self.get_body_com("distal_4"),
         # ])
+
+    def get_eval(self):
+        #print('arm position ',self.get_body_com("object"))
+        #print('goal position',self.get_body_com("goal"))
+        self.arm_pos=self.get_body_com("distal_4")
+        self.goal_pos=self.get_body_com("goal")
+        self.eval=np.linalg.norm(self.arm_pos-self.goal_pos)
+        return self.eval

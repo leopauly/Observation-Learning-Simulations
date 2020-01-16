@@ -12,7 +12,7 @@ is_batch_norm = False #batch normalization switch
 xrange=range
 
 def main():
-    experiment= 'Pusher3DOFReal-v1' #specify environments here
+    experiment= 'CleanerEnv' #specify environments here
     env= gym.make(experiment)
     steps= env.spec.timestep_limit #steps per episode    
     assert isinstance(env.observation_space, Box), "observation space must be continuous"

@@ -1,0 +1,614 @@
+digraph G {
+	graph [color=white fillcolor=white fontcolor="#414141" style=rounded]
+	node [color="#aaaaaa" fillcolor=white fontcolor="#414141" penwidth=2 style=filled]
+	edge [arrowsize=1.2 color="#aaaaaa" fontcolor="#414141" penwidth=2.5]
+	conv1_input_2 [label=conv1_input_2]
+	init [label=init]
+	Reshape_5 [label=Reshape_5]
+	Sub_7 [label=Sub_7]
+	Slice_4 [label=Slice_4]
+	SoftmaxCrossEntropyWithLogits_2 [label=SoftmaxCrossEntropyWithLogits_2]
+	Equal [label=Equal]
+	zeropad5 [label=zeropad5]
+	Reshape_1 [label=Reshape_1]
+	conv4a_1 [label=conv4a_1]
+	fc6_3 [label=fc6_3]
+	pool2_3 [label=pool2_3]
+	Placeholder_1 [label=Placeholder_1]
+	dropout_5 [label=dropout_5]
+	conv5b_3 [label=conv5b_3]
+	zeropad5_1 [label=zeropad5_1]
+	Const_6 [label=Const_6]
+	Const [label=Const]
+	conv1_input [label=conv1_input]
+	conv1_input_1 [label=conv1_input_1]
+	concat_1 [label=concat_1]
+	Reshape [label=Reshape]
+	Rank_11 [label=Rank_11]
+	Const_4 [label=Const_4]
+	pool4_3 [label=pool4_3]
+	Slice_2 [label=Slice_2]
+	Sub_11 [label=Sub_11]
+	concat_7 [label=concat_7]
+	Shape_5 [label=Shape_5]
+	conv4b_1 [label=conv4b_1]
+	fc8_2 [label=fc8_2]
+	conv3a_2 [label=conv3a_2]
+	conv4b_3 [label=conv4b_3]
+	Sub_1 [label=Sub_1]
+	Reshape_8 [label=Reshape_8]
+	Reshape_6 [label=Reshape_6]
+	Const_3 [label=Const_3]
+	fc8_1 [label=fc8_1]
+	stack [label=stack]
+	Mean_2 [label=Mean_2]
+	conv4a [label=conv4a]
+	flatten_1 [label=flatten_1]
+	concat_4 [label=concat_4]
+	pool2 [label=pool2]
+	conv3a_3 [label=conv3a_3]
+	ArgMax_2 [label=ArgMax_2]
+	flatten_4 [label=flatten_4]
+	Placeholder_2 [label=Placeholder_2]
+	pool1 [label=pool1]
+	fc8 [label=fc8]
+	dropout_1 [label=dropout_1]
+	fc6_1 [label=fc6_1]
+	save [label=save]
+	gradients [label=gradients]
+	Shape_7 [label=Shape_7]
+	ArgMax [label=ArgMax]
+	pool5_3 [label=pool5_3]
+	conv3a [label=conv3a]
+	Adagrad [label=Adagrad]
+	conv5a [label=conv5a]
+	pool5_1 [label=pool5_1]
+	Sub_4 [label=Sub_4]
+	conv1_2 [label=conv1_2]
+	Rank_4 [label=Rank_4]
+	Sub_3 [label=Sub_3]
+	Softmax_2 [label=Softmax_2]
+	pool3_3 [label=pool3_3]
+	Rank_2 [label=Rank_2]
+	dropout_4 [label=dropout_4]
+	Reshape_11 [label=Reshape_11]
+	Mean [label=Mean]
+	dropout_6 [label=dropout_6]
+	conv4a_3 [label=conv4a_3]
+	conv5a_2 [label=conv5a_2]
+	Const_2 [label=Const_2]
+	pool3_1 [label=pool3_1]
+	conv1 [label=conv1]
+	split_1 [label=split_1]
+	dropout_7 [label=dropout_7]
+	concat_3 [label=concat_3]
+	ArgMax_3 [label=ArgMax_3]
+	conv4b [label=conv4b]
+	Const_5 [label=Const_5]
+	Mean_3 [label=Mean_3]
+	Rank [label=Rank]
+	Rank_8 [label=Rank_8]
+	dropout_2 [label=dropout_2]
+	Rank_3 [label=Rank_3]
+	pool4_1 [label=pool4_1]
+	Softmax_3 [label=Softmax_3]
+	Slice_8 [label=Slice_8]
+	sequential_1 [label=sequential_1]
+	pool5_2 [label=pool5_2]
+	conv3b [label=conv3b]
+	Rank_7 [label=Rank_7]
+	Slice_3 [label=Slice_3]
+	Shape_4 [label=Shape_4]
+	flatten_3 [label=flatten_3]
+	conv5b_1 [label=conv5b_1]
+	fc7_1 [label=fc7_1]
+	fc6_2 [label=fc6_2]
+	sequential_2 [label=sequential_2]
+	Slice_7 [label=Slice_7]
+	Sub_9 [label=Sub_9]
+	pool3 [label=pool3]
+	conv4a_2 [label=conv4a_2]
+	SoftmaxCrossEntropyWithLogits [label=SoftmaxCrossEntropyWithLogits]
+	conv5b [label=conv5b]
+	Rank_9 [label=Rank_9]
+	conv5b_2 [label=conv5b_2]
+	pool2_1 [label=pool2_1]
+	concat_8 [label=concat_8]
+	pool3_2 [label=pool3_2]
+	Reshape_3 [label=Reshape_3]
+	concat_5 [label=concat_5]
+	Placeholder [label=Placeholder]
+	Slice_1 [label=Slice_1]
+	conv5a_3 [label=conv5a_3]
+	Slice_5 [label=Slice_5]
+	Cast_4 [label=Cast_4]
+	concat_6 [label=concat_6]
+	fc7 [label=fc7]
+	Slice_10 [label=Slice_10]
+	Shape_10 [label=Shape_10]
+	conv1_input_3 [label=conv1_input_3]
+	Reshape_9 [label=Reshape_9]
+	zeropad5_2 [label=zeropad5_2]
+	fc8_3 [label=fc8_3]
+	Reshape_4 [label=Reshape_4]
+	Sub_5 [label=Sub_5]
+	conv2_2 [label=conv2_2]
+	pool1_3 [label=pool1_3]
+	Slice_11 [label=Slice_11]
+	Shape_11 [label=Shape_11]
+	Softmax [label=Softmax]
+	Mean_1 [label=Mean_1]
+	Rank_5 [label=Rank_5]
+	pool5 [label=pool5]
+	Sub [label=Sub]
+	Shape_9 [label=Shape_9]
+	conv5a_1 [label=conv5a_1]
+	Slice_9 [label=Slice_9]
+	concat_9 [label=concat_9]
+	conv3b_3 [label=conv3b_3]
+	Shape_8 [label=Shape_8]
+	Sub_8 [label=Sub_8]
+	zeropad5_3 [label=zeropad5_3]
+	Shape [label=Shape]
+	Slice [label=Slice]
+	SoftmaxCrossEntropyWithLogits_3 [label=SoftmaxCrossEntropyWithLogits_3]
+	Softmax_1 [label=Softmax_1]
+	SoftmaxCrossEntropyWithLogits_1 [label=SoftmaxCrossEntropyWithLogits_1]
+	Sub_6 [label=Sub_6]
+	Shape_3 [label=Shape_3]
+	conv2 [label=conv2]
+	Rank_6 [label=Rank_6]
+	split [label=split]
+	sequential_3 [label=sequential_3]
+	Reshape_10 [label=Reshape_10]
+	pool4_2 [label=pool4_2]
+	Mean_4 [label=Mean_4]
+	dropout_3 [label=dropout_3]
+	Shape_6 [label=Shape_6]
+	dropout_8 [label=dropout_8]
+	conv3a_1 [label=conv3a_1]
+	conv3b_1 [label=conv3b_1]
+	Shape_1 [label=Shape_1]
+	pool1_1 [label=pool1_1]
+	Sub_10 [label=Sub_10]
+	fc6 [label=fc6]
+	ArgMax_1 [label=ArgMax_1]
+	pool2_2 [label=pool2_2]
+	Const_1 [label=Const_1]
+	Slice_6 [label=Slice_6]
+	Reshape_7 [label=Reshape_7]
+	Rank_1 [label=Rank_1]
+	fc7_2 [label=fc7_2]
+	conv1_1 [label=conv1_1]
+	sequential_4 [label=sequential_4]
+	Rank_10 [label=Rank_10]
+	conv2_3 [label=conv2_3]
+	pool4 [label=pool4]
+	concat_2 [label=concat_2]
+	conv2_1 [label=conv2_1]
+	conv4b_2 [label=conv4b_2]
+	Reshape_2 [label=Reshape_2]
+	flatten_2 [label=flatten_2]
+	fc7_3 [label=fc7_3]
+	concat [label=concat]
+	Shape_2 [label=Shape_2]
+	pool1_2 [label=pool1_2]
+	conv3b_2 [label=conv3b_2]
+	conv1_3 [label=conv1_3]
+	Sub_2 [label=Sub_2]
+	Rank_8 -> Sub_7 [label=""]
+	Shape_5 -> Slice_4 [label=2]
+	Sub_4 -> Slice_4 [label=""]
+	Reshape_6 -> SoftmaxCrossEntropyWithLogits_2 [label="?×?"]
+	Reshape_7 -> SoftmaxCrossEntropyWithLogits_2 [label="?×?"]
+	concat_9 -> Equal [label="?"]
+	Placeholder_2 -> Equal [label="?"]
+	conv5b -> zeropad5
+	concat_1 -> Reshape_1 [label=2]
+	split_1 -> Reshape_1 [label="?×101"]
+	pool3_1 -> conv4a_1
+	flatten_4 -> fc6_3
+	conv2_3 -> pool2_3
+	conv5a_1 -> conv5b_1
+	fc6_2 -> dropout_5
+	dropout_1 -> dropout_5
+	conv5a_3 -> conv5b_3
+	conv5b_1 -> zeropad5_1
+	conv1_1 -> pool1_1
+	Slice_1 -> concat_1 [label=1]
+	sequential_1 -> Reshape
+	concat -> Reshape [label=2]
+	conv4b_3 -> pool4_3
+	Sub_2 -> Slice_2 [label=""]
+	Shape -> Slice_2 [label=2]
+	Rank_9 -> Sub_11 [label=""]
+	Slice_10 -> concat_7 [label=1]
+	split_1:1 -> Shape_5
+	conv4a_1 -> conv4b_1
+	dropout_6 -> fc8_2
+	pool2_2 -> conv3a_2
+	SoftmaxCrossEntropyWithLogits_2 -> Reshape_8 [label="?×?"]
+	Slice_8 -> Reshape_8 [label=1]
+	concat_4 -> Reshape_6 [label=2]
+	sequential_3 -> Reshape_6
+	pool4 -> conv5a
+	Slice_6 -> concat_4 [label=1]
+	Reshape_8 -> Mean_2 [label="?"]
+	Const_4 -> Mean_2 [label=1]
+	pool3 -> conv4a
+	pool5 -> flatten_1
+	dropout_4 -> fc8_1
+	conv2 -> pool2
+	pool2_3 -> conv3a_3
+	sequential_3 -> ArgMax_2
+	pool5_3 -> flatten_4
+	conv1 -> pool1
+	sequential_4 -> ArgMax_3
+	fc6 -> dropout_1
+	flatten_2 -> fc6_1
+	conv5b_1 -> save
+	fc7_1 -> save
+	conv3a -> save
+	fc6_2 -> save
+	conv3b_3 -> save
+	fc8 -> save
+	fc6_3 -> save
+	conv1_2 -> save
+	conv5b -> save
+	conv5b_2 -> save
+	conv5b_3 -> save
+	conv4a_1 -> save
+	conv3a_1 -> save
+	fc6 -> save
+	conv4a_3 -> save
+	conv5a_2 -> save
+	conv5a_3 -> save
+	conv3b_1 -> save
+	fc7 -> save
+	conv1_1 -> save
+	fc7_2 -> save
+	conv1 -> save
+	conv4b_1 -> save
+	fc8_2 -> save
+	conv4b_3 -> save
+	conv2_3 -> save
+	conv3a_2 -> save
+	fc8_3 -> save
+	conv4a_2 -> save
+	conv2_2 -> save
+	conv2_1 -> save
+	conv5a -> save
+	conv4b_2 -> save
+	conv4b -> save
+	fc8_1 -> save
+	fc7_3 -> save
+	conv4a -> save
+	conv5a_1 -> save
+	conv2 -> save
+	conv3a_3 -> save
+	conv3b_2 -> save
+	conv1_3 -> save
+	conv3b -> save
+	fc6_1 -> save
+	conv5b_1 -> gradients
+	SoftmaxCrossEntropyWithLogits_3 -> gradients [label="?×?"]
+	fc7_1 -> gradients
+	conv3a -> gradients
+	fc6_2 -> gradients
+	sequential_2 -> gradients
+	conv3b_3 -> gradients
+	split:3 -> gradients
+	SoftmaxCrossEntropyWithLogits_2 -> gradients [label="?×?"]
+	fc8 -> gradients
+	sequential_3 -> gradients
+	split:2 -> gradients
+	split -> gradients [label="?×16×112×112×3"]
+	fc6_3 -> gradients
+	split:1 -> gradients
+	SoftmaxCrossEntropyWithLogits_3:1 -> gradients
+	conv1_2 -> gradients
+	SoftmaxCrossEntropyWithLogits -> gradients [label="?×?"]
+	conv5b -> gradients
+	conv5b_2 -> gradients
+	Reshape_5 -> gradients [label="?"]
+	conv5b_3 -> gradients
+	conv4a_1 -> gradients
+	conv3a_1 -> gradients
+	Reshape_11 -> gradients [label="?"]
+	fc6 -> gradients
+	SoftmaxCrossEntropyWithLogits_1 -> gradients [label="?×?"]
+	conv4a_3 -> gradients
+	conv5a_2 -> gradients
+	conv5a_3 -> gradients
+	SoftmaxCrossEntropyWithLogits:1 -> gradients
+	conv3b_1 -> gradients
+	fc7 -> gradients
+	conv1_1 -> gradients
+	sequential_4 -> gradients
+	fc7_2 -> gradients
+	conv1 -> gradients
+	conv4b_1 -> gradients
+	fc8_2 -> gradients
+	conv4b_3 -> gradients
+	fc8_3 -> gradients
+	conv2_3 -> gradients
+	conv4a_2 -> gradients
+	conv3a_2 -> gradients
+	conv2_2 -> gradients
+	conv2_1 -> gradients
+	conv5a -> gradients
+	conv4b_2 -> gradients
+	conv4b -> gradients
+	Reshape_8 -> gradients [label="?"]
+	SoftmaxCrossEntropyWithLogits_1:1 -> gradients
+	Reshape_2 -> gradients [label="?"]
+	fc8_1 -> gradients
+	fc7_3 -> gradients
+	conv4a -> gradients
+	conv5a_1 -> gradients
+	conv2 -> gradients
+	SoftmaxCrossEntropyWithLogits_2:1 -> gradients
+	conv1_3 -> gradients
+	conv3a_3 -> gradients
+	conv3b_2 -> gradients
+	sequential_1 -> gradients
+	conv3b -> gradients
+	fc6_1 -> gradients
+	sequential_3 -> Shape_7
+	sequential_1 -> ArgMax
+	zeropad5_3 -> pool5_3
+	pool2 -> conv3a
+	gradients -> Adagrad
+	conv5b_1 -> Adagrad
+	fc7_1 -> Adagrad
+	conv3a -> Adagrad
+	fc6_2 -> Adagrad
+	conv3b_3 -> Adagrad
+	fc8 -> Adagrad
+	fc6_3 -> Adagrad
+	conv1_2 -> Adagrad
+	conv5b -> Adagrad
+	conv5b_2 -> Adagrad
+	conv5b_3 -> Adagrad
+	conv4a_1 -> Adagrad
+	conv3a_1 -> Adagrad
+	fc6 -> Adagrad
+	conv4a_3 -> Adagrad
+	conv5a_2 -> Adagrad
+	conv5a_3 -> Adagrad
+	conv3b_1 -> Adagrad
+	fc7 -> Adagrad
+	conv1_1 -> Adagrad
+	fc7_2 -> Adagrad
+	conv1 -> Adagrad
+	conv4b_1 -> Adagrad
+	fc8_2 -> Adagrad
+	conv4b_3 -> Adagrad
+	conv2_3 -> Adagrad
+	fc8_3 -> Adagrad
+	conv4a_2 -> Adagrad
+	conv3a_2 -> Adagrad
+	conv2_2 -> Adagrad
+	conv2_1 -> Adagrad
+	conv5a -> Adagrad
+	conv4b_2 -> Adagrad
+	conv4b -> Adagrad
+	fc8_1 -> Adagrad
+	fc7_3 -> Adagrad
+	conv4a -> Adagrad
+	conv5a_1 -> Adagrad
+	conv2 -> Adagrad
+	conv3a_3 -> Adagrad
+	conv3b_2 -> Adagrad
+	conv1_3 -> Adagrad
+	conv3b -> Adagrad
+	fc6_1 -> Adagrad
+	conv3a_3 -> conv3b_3
+	zeropad5_1 -> pool5_1
+	pool4_1 -> conv5a_1
+	flatten_3 -> fc6_2
+	conv1_input_2 -> conv1_2 [label="?×16×112×112×3"]
+	SoftmaxCrossEntropyWithLogits_1 -> Reshape_5 [label="?×?"]
+	Slice_5 -> Reshape_5 [label=1]
+	Rank_4 -> Sub_3 [label=""]
+	sequential_3 -> Softmax_2
+	conv3b_3 -> pool3_3
+	fc7_1 -> dropout_4
+	dropout_1 -> dropout_4
+	Slice_11 -> Reshape_11 [label=1]
+	SoftmaxCrossEntropyWithLogits_3 -> Reshape_11 [label="?×?"]
+	dropout_1 -> dropout_6
+	fc7_2 -> dropout_6
+	pool3_3 -> conv4a_3
+	pool4_2 -> conv5a_2
+	conv3b_1 -> pool3_1
+	conv1_input -> conv1 [label="?×16×112×112×3"]
+	Placeholder_1 -> split_1 [label="?×101"]
+	dropout_1 -> dropout_7
+	fc6_3 -> dropout_7
+	Slice_4 -> concat_3 [label=1]
+	dropout_2 -> fc8
+	conv4a -> conv4b
+	Slice_9 -> concat_6 [label=1]
+	Const_5 -> Mean_3 [label=1]
+	Reshape_11 -> Mean_3 [label="?"]
+	fc7 -> dropout_2
+	dropout_1 -> dropout_2
+	pool1 -> conv2
+	conv4b_1 -> pool4_1
+	sequential_4 -> Softmax_3
+	Rank_6 -> Sub_8 [label=""]
+	conv3b -> sequential_1
+	conv5a -> sequential_1
+	conv5b -> sequential_1
+	fc7 -> sequential_1
+	split -> sequential_1 [label="?×16×112×112×3"]
+	conv1 -> sequential_1
+	conv3a -> sequential_1
+	conv4a -> sequential_1
+	conv2 -> sequential_1
+	fc8 -> sequential_1
+	fc6 -> sequential_1
+	dropout_1 -> sequential_1
+	conv4b -> sequential_1
+	zeropad5_2 -> pool5_2
+	conv3a -> conv3b
+	Shape_4 -> Slice_3 [label=2]
+	Sub_3 -> Slice_3 [label=""]
+	sequential_2 -> Shape_4
+	pool5_2 -> flatten_3
+	dropout_3 -> fc7_1
+	Rank_2 -> Sub_1 [label=""]
+	split:1 -> sequential_2
+	fc6_1 -> sequential_2
+	conv5b_1 -> sequential_2
+	conv3b_1 -> sequential_2
+	fc7_1 -> sequential_2
+	fc8_1 -> sequential_2
+	conv1_1 -> sequential_2
+	conv4a_1 -> sequential_2
+	conv5a_1 -> sequential_2
+	conv3a_1 -> sequential_2
+	conv4b_1 -> sequential_2
+	dropout_1 -> sequential_2
+	conv2_1 -> sequential_2
+	Shape_8 -> Slice_7 [label=2]
+	Sub_7 -> Slice_7 [label=""]
+	Rank_10 -> Sub_9 [label=""]
+	conv3b -> pool3
+	SoftmaxCrossEntropyWithLogits -> Reshape_2 [label="?×?"]
+	Slice_2 -> Reshape_2 [label=1]
+	Reshape_1 -> SoftmaxCrossEntropyWithLogits [label="?×?"]
+	Reshape -> SoftmaxCrossEntropyWithLogits [label="?×?"]
+	conv5a -> conv5b
+	conv5a_2 -> conv5b_2
+	conv2_1 -> pool2_1
+	Softmax_2 -> concat_8 [label="?×101"]
+	Softmax -> concat_8 [label="?×101"]
+	Softmax_1 -> concat_8 [label="?×101"]
+	Softmax_3 -> concat_8 [label="?×101"]
+	conv3b_2 -> pool3_2
+	sequential_2 -> Reshape_3
+	concat_2 -> Reshape_3 [label=2]
+	Slice_7 -> concat_5 [label=1]
+	Sub_1 -> Slice_1 [label=""]
+	Shape_2 -> Slice_1 [label=2]
+	pool4_3 -> conv5a_3
+	Sub_5 -> Slice_5 [label=""]
+	Shape_3 -> Slice_5 [label=2]
+	Equal -> Cast_4 [label="?"]
+	sequential_4 -> Shape_9
+	dropout_1 -> fc7
+	Shape_11 -> Slice_10 [label=2]
+	Sub_10 -> Slice_10 [label=""]
+	sequential_4 -> Shape_10
+	concat_6 -> Reshape_9 [label=2]
+	sequential_4 -> Reshape_9
+	conv4a_3 -> conv4b_3
+	dropout_8 -> fc8_3
+	concat_3 -> Reshape_4 [label=2]
+	split_1:1 -> Reshape_4
+	Rank_3 -> Sub_5 [label=""]
+	pool1_2 -> conv2_2
+	conv1_3 -> pool1_3
+	Shape_9 -> Slice_11 [label=2]
+	Sub_11 -> Slice_11 [label=""]
+	split_1:3 -> Shape_11
+	sequential_1 -> Softmax
+	Const_3 -> Mean_1 [label=1]
+	Reshape_5 -> Mean_1 [label="?"]
+	zeropad5 -> pool5
+	dropout_5 -> fc7_2
+	Rank_1 -> Sub [label=""]
+	sequential_1 -> Shape
+	Rank_5 -> Sub_4 [label=""]
+	Shape_10 -> Slice_9 [label=2]
+	Sub_9 -> Slice_9 [label=""]
+	ArgMax_2 -> concat_9 [label="?"]
+	ArgMax_3 -> concat_9 [label="?"]
+	ArgMax_1 -> concat_9 [label="?"]
+	ArgMax -> concat_9 [label="?"]
+	sequential_2 -> Shape_3
+	split_1:2 -> Shape_8
+	pool5_1 -> flatten_2
+	Shape_6 -> Slice_8 [label=2]
+	Sub_8 -> Slice_8 [label=""]
+	conv5b_3 -> zeropad5_3
+	Shape_1 -> Slice [label=2]
+	Sub -> Slice [label=""]
+	Reshape_10 -> SoftmaxCrossEntropyWithLogits_3 [label="?×?"]
+	Reshape_9 -> SoftmaxCrossEntropyWithLogits_3 [label="?×?"]
+	sequential_2 -> Softmax_1
+	Reshape_4 -> SoftmaxCrossEntropyWithLogits_1 [label="?×?"]
+	Reshape_3 -> SoftmaxCrossEntropyWithLogits_1 [label="?×?"]
+	dropout_7 -> fc7_3
+	conv5b_2 -> zeropad5_2
+	Placeholder -> split [label="?×16×112×112×3"]
+	conv4b_2 -> sequential_3
+	conv1_2 -> sequential_3
+	split:2 -> sequential_3
+	conv3a_2 -> sequential_3
+	conv5b_2 -> sequential_3
+	fc7_2 -> sequential_3
+	dropout_1 -> sequential_3
+	fc6_2 -> sequential_3
+	fc8_2 -> sequential_3
+	conv3b_2 -> sequential_3
+	conv4a_2 -> sequential_3
+	conv2_2 -> sequential_3
+	conv5a_2 -> sequential_3
+	split_1:3 -> Reshape_10
+	concat_7 -> Reshape_10 [label=2]
+	conv4b_2 -> pool4_2
+	Cast_4 -> Mean_4 [label="?"]
+	Const_6 -> Mean_4 [label=1]
+	dropout_1 -> dropout_3
+	fc6_1 -> dropout_3
+	sequential_3 -> Shape_6
+	fc7_3 -> dropout_8
+	dropout_1 -> dropout_8
+	pool2_1 -> conv3a_1
+	conv3a_1 -> conv3b_1
+	sequential_1 -> Shape_1
+	Rank_11 -> Sub_10 [label=""]
+	flatten_1 -> fc6
+	split_1 -> Shape_2 [label="?×101"]
+	conv2_2 -> pool2_2
+	Sub_6 -> Slice_6 [label=""]
+	Shape_7 -> Slice_6 [label=2]
+	concat_5 -> Reshape_7 [label=2]
+	split_1:2 -> Reshape_7
+	Const_2 -> Mean [label=1]
+	Reshape_2 -> Mean [label="?"]
+	conv1_input_1 -> conv1_1 [label="?×16×112×112×3"]
+	conv5a_3 -> sequential_4
+	fc6_3 -> sequential_4
+	fc8_3 -> sequential_4
+	conv5b_3 -> sequential_4
+	fc7_3 -> sequential_4
+	conv3b_3 -> sequential_4
+	conv3a_3 -> sequential_4
+	split:3 -> sequential_4
+	conv4b_3 -> sequential_4
+	conv2_3 -> sequential_4
+	conv1_3 -> sequential_4
+	dropout_1 -> sequential_4
+	conv4a_3 -> sequential_4
+	pool1_3 -> conv2_3
+	pool3_2 -> conv4a_2
+	Slice_3 -> concat_2 [label=1]
+	pool1_1 -> conv2_1
+	conv4a_2 -> conv4b_2
+	Mean -> stack [label=""]
+	Mean_3 -> stack [label=""]
+	Mean_1 -> stack [label=""]
+	Mean_2 -> stack [label=""]
+	conv4b -> pool4
+	Rank_7 -> Sub_6 [label=""]
+	Slice -> concat [label=1]
+	sequential_2 -> ArgMax_1
+	conv1_2 -> pool1_2
+	conv3a_2 -> conv3b_2
+	conv1_input_3 -> conv1_3 [label="?×16×112×112×3"]
+	Rank -> Sub_2 [label=""]
+}

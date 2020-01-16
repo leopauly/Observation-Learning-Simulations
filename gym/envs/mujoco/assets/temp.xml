@@ -88,7 +88,7 @@
             <joint axis="1 0 0" damping="0.5" name="goal_slidex" pos="0 0 0" range="-10.3213 10.3" type="slide" /> 
         </body>
 
-    <geom conaffinity="0" contype="0" density="0.00001" name="object0" pos="0.620511 0.937848 -0.275" rgba="0.425681 0.565006 0.558183 1" size="0.05 0.05 0.1" type="cylinder" /><geom conaffinity="0" contype="0" density="0.00001" name="object1" pos="-0.193745 0.979603 -0.275" rgba="0.689508 0.751241 0.037846 1" size="0.05 0.05 0.1" type="cylinder" /><geom conaffinity="0" contype="0" density="0.00001" name="object2" pos="0.586253 0.629115 -0.275" rgba="0.044855 0.761331 0.287905 1" size="0.05 0.05 0.1" type="cylinder" /></worldbody>
+    <geom conaffinity="0" contype="0" density="0.00001" name="object0" pos="-0.248609 0.473392 -0.275" rgba="0.484162 0.114487 0.786712 1" size="0.05 0.05 0.1" type="cylinder" /></worldbody>
 
     <actuator>
         <motor ctrllimited="true" ctrlrange="-2.0 2.0" joint="r_shoulder_pan_joint" />

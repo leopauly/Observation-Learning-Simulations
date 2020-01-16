@@ -41,9 +41,8 @@ assert isinstance(env.observation_space, Box), "observation space must be contin
 assert isinstance(env.action_space, Box), "action space must be continuous"
 
 ## Defining vars for reinfrocement learning algo
-num_episodes=501
-num_rollouts=20 # Each roll out represent a complete activity : activity could be pushing an object, reaching to a point or similar !
-steps=16 # No of actions taken in a roll out
+num_episodes=20
+steps=160 # No of actions taken in a roll out
 is_batch_norm = False #batch normalization switch
 xrange=range # For python3
 start_training=64 # Buffer size, before starting to train the RL algorithm
@@ -58,7 +57,7 @@ cluster_length=16 # Length of one activity
 nb_classes=2 
 feature_size=4608 #8192   #16384  #487 
 #frame_feature_size=
-demo_folder='./Demos/Demo_push_0deg/'
+demo_folder='./Demos/push_robo_M2/'
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 
@@ -117,6 +116,25 @@ def demo_array_extractor(demo_vid_path):
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 
+def sampling_obs(vid_robo_all,num_frames_per_clip=cluster_length):
+    total_obs=len(vid_robo_all)
+    jump=math.floor(total_obs/num_frames_per_clip)
+    print('jump',jump,'totol ob',total_obs,'vid_robo_all',vid_robo_all.shape)
+    loop=0
+    ret_arr=[]
+    for i in range(0,total_obs,jump):
+        if (loop>15):
+            break
+        img_data = vid_robo_all[i]
+        ret_arr.append(img_data)
+        loop=loop+1
+        
+    ret_arr=np.array(ret_arr)
+    print('demo array size:::::::',ret_arr.shape)
+    #ret_arr=ret_arr/255
+    return ret_arr
+
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 ### VIDEO FEATURE EXTRACTION
 
@@ -125,6 +143,7 @@ class Vid_Feature:
     def __init__(self):
         self.saved_path='/home/ironman2/S2l_storage/trained_activity_nets_thesis/' 
         self.network_name='activity_model.ckpt-67.meta'
+        self.network_weight_name='activity_model.ckpt-67'
         ### Activity_net
         self.g=tf.Graph()
         with self.g.as_default():
@@ -132,7 +151,7 @@ class Vid_Feature:
             self.sess = tf.InteractiveSession(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=False))
             ## Restore model weights from previously saved model
             self.saver = tf.train.import_meta_graph(os.path.join(self.saved_path,self.network_name))
-            self.saver.restore(self.sess, os.path.join(self.saved_path,'activity_model.ckpt-104'))
+            self.saver.restore(self.sess, os.path.join(self.saved_path,self.network_weight_name))
             print("Model restored from file: %s" % self.saved_path,flush=True)    
 
     ## For extracting activity features
@@ -140,9 +159,13 @@ class Vid_Feature:
         #print('shape of video for feature extraction:',vid_np.shape)
         self.vid_=vid_np.reshape(-1,cluster_length,height,width,channel)
 
+        #print(tf.get_default_graph())
         #print(tf.contrib.graph_editor.get_tensors(self.g))   #(tf.get_default_graph()))
-        #print(tf.get_default_graph().as_graph_def())
-        f_v = self.sess.graph.get_tensor_by_name('flatten_1/Reshape:0')
+        #print(self.g.as_graph_def())
+        #for op in self.g.get_operations():
+        #    print(str(op.name))
+        
+        f_v = self.sess.graph.get_tensor_by_name('flatten_1/Reshape:0') #f_v = self.sess.graph.get_tensor_by_name('fc6/Relu:0')
         self.f_v_val=np.array(self.sess.run([f_v], feed_dict={'conv1_input:0':self.vid_,'Placeholder:0':self.vid_ }))#,K.learning_phase(): 0 }))
 
         #print('extracted video features shape:',self.f_v_val.shape)
@@ -159,7 +182,8 @@ def distance(f_demo,f_robo):
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 
-def s2l():
+def s2l(i_run):
+    print('This is the ith run',i_run)
 
     #Randomly initialize critic,actor,target critic, target actor network  and replay buffer   
     num_states = feature_size   #num_states = env.observation_space.shape[0]
@@ -171,10 +195,12 @@ def s2l():
     exploration_noise = OUNoise(env.action_space.shape[0])
     counter=0 
     total_reward=0
+    best_reward=-10000
     
     print ("Number of Steps per episode:", steps)
     reward_st_per_episode = np.array([0])  #saving reward
     eval_metric_st= np.array([0])
+    eval_metric_st_per_episode= np.array([0])
     reward_st_per_step = np.array([0])  #saving reward after every step
     
     activity_obj=Vid_Feature()
@@ -193,12 +219,15 @@ def s2l():
         observation=observation.reshape(-1)
         reward_per_episode = 0
 
+        vid_robo_=[]
+
         for i in range(steps):
 
             x = observation
 
             action = agent.evaluate_actor(np.reshape(x,[1,num_states]))
-            noise = exploration_noise.noise()
+            noise = exploration_noise.noise()/(episode+1)
+            print('noise',noise)
             action = action[0] + noise #Select action according to current policy and exploration noise
             print ('Action at episode-',episode, 'step-', i ," :",action)
 
@@ -213,7 +242,8 @@ def s2l():
             #pasue()
                 
             if(i==(steps-1)):
-                vid_robo=np.array(vid_robo_)
+                vid_robo_all=np.array(vid_robo_)
+                vid_robo=sampling_obs(vid_robo_all)
                 robo_features=activity_obj.feature_extractor(vid_robo)
                 reward=-(distance(demo_features,robo_features))
                 reward=np.array(reward)
@@ -228,11 +258,11 @@ def s2l():
             eval_metric=eval_metric.reshape(-1)
             print('Distance to goal:',eval_metric)    
             eval_metric_st = np.append(eval_metric_st,eval_metric)           
-            np.savetxt('eval_metric_per_step.txt',eval_metric_st, newline="\n")
+            np.savetxt('eval_metric_per_step_run_'+str(i_run)+'.txt',eval_metric_st, newline="\n")
 
             # Storing reward after every step
             reward_st_per_step = np.append(reward_st_per_step,reward)
-            np.savetxt('reward_per_step.txt',reward_st_per_step, newline="\n")
+            np.savetxt('reward_per_step_run_'+str(i_run)+'.txt',reward_st_per_step, newline="\n")
 
             #add s_t,s_t+1,action,reward to experience memory
             agent.add_experience(x,observation,action,reward,False)
@@ -243,28 +273,54 @@ def s2l():
                     agent.train()
             print ('\n\n')
             
+            '''
             #Saving policy 
-            if ((episode%50)==0):
-                print('saving policy...........................!')
-                agent.save_actor(episode)
-            
+            if ((episode%1)==0 and i==(steps-1)):
+                if (best_reward<reward)
+                    print('saving policy...........................!')
+                    agent.save_actor(episode)
+            '''   
             reward_per_step=reward
             reward_per_episode+=reward_per_step  
 
         #check if episode ends:
         
-        print ('EPISODE: ',episode,' Total Reward: ',reward_per_episode)
+        print ('Episode: ',episode,' Episode Reward: ',reward_per_episode)
         print ("Printing reward to file")
         exploration_noise.reset() #reinitializing random noise for action exploration
         reward_st_per_episode = np.append(reward_st_per_episode,reward_per_episode)
-        np.savetxt('episode_reward.txt',reward_st_per_episode, fmt='%f', newline="\n")
+        np.savetxt('episode_reward_run_'+str(i_run)+'.txt',reward_st_per_episode, fmt='%f', newline="\n")
         print ('\n\n')
                      
         total_reward+=reward_per_episode  
 
-    print ("Average reward per episode {}".format(total_reward / num_episodes))   
+        if (best_reward<reward_per_episode):
+            best_reward=reward_per_episode
+            print('best reward:',best_reward)
+            print('current reward:',reward_per_episode)
+            print('saving policy for episode..................:',episode)
+            agent.save_actor(episode,i_run)
 
-            
-        
-s2l()
+        # Printing eval_metric after every step
+        eval_metric=np.array(env.get_eval())
+        eval_metric=eval_metric.reshape(-1)
+        print('Distance to goal at the end  of episode:',eval_metric)    
+        eval_metric_st_per_episode = np.append(eval_metric_st_per_episode,eval_metric)           
+        np.savetxt('eval_metric_per_epispde_run_'+str(i_run)+'.txt', eval_metric_st_per_episode, newline="\n")
 
+    print ("Average reward per episode {}".format(total_reward / num_episodes))
+    print('Best episode reward',best_reward)   
+
+    del agent
+    del activity_obj
+    del frame_obj
+
+if __name__=='__main__':
+    from datetime import datetime
+    start_time=str(datetime.now())
+    run_start=int(sys.argv[1])
+    run_end=int(sys.argv[2])
+    print('Start trial:',run_start,'End trail:',run_end-1)
+    for i_run in range(run_start,run_end):
+        s2l(i_run)
+    print('Start to end time:',start_time,str(datetime.now()))

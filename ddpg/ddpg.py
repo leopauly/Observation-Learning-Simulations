@@ -115,8 +115,8 @@ class DDPG:
         self.critic_net.update_target_critic()
         self.actor_net.update_target_actor()
 
-    def save_actor(self,step):
-        self.actor_net.save_actor_net(step)
+    def save_actor(self,episode,i_run):
+        self.actor_net.save_actor_net(episode,i_run)
 
         
                 
