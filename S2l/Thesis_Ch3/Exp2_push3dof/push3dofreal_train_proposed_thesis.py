@@ -57,7 +57,7 @@ cluster_length=16 # Length of one activity
 nb_classes=2 
 feature_size=4608 #8192   #16384  #487 
 #frame_feature_size=
-demo_folder='./Demos/push_robo_M2/'
+demo_folder='./Demos/push_robo_M3/'
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 

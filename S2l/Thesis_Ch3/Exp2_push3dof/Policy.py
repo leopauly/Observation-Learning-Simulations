@@ -12,9 +12,9 @@ class Saved_Policy:
     
     def __init__(self,num_states,num_actions):
         #self.policy_savedpath="/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/Baseline2/M_10trials_0deg/best_policies/"
-        self.policy_savedpath="/home/ironman2/S2l_storage/policies_saved/thesis/proposed/push_robo_M2/"     
-        self.network_graph_name='policy.episode-303.meta'
-        self.network_name='policy.episode-303'
+        self.policy_savedpath="/home/ironman2/S2l_storage/policies_saved/thesis/proposed/push_robo_M3/"     
+        self.network_graph_name='policy.episode-302.meta'
+        self.network_name='policy.episode-302'
         ### policy_net
         self.g=tf.Graph()
         with self.g.as_default():

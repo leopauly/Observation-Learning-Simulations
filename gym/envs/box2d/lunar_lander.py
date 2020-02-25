@@ -129,7 +129,7 @@ class LunarLander(gym.Env):
         H = VIEWPORT_H/SCALE
 
         # terrain
-        CHUNKS = 11
+        CHUNKS =11 # 11
         height = self.np_random.uniform(0, H/2, size=(CHUNKS+1,) )
         chunk_x  = [W/(CHUNKS-1)*i for i in range(CHUNKS)]
         self.helipad_x1 = chunk_x[CHUNKS//2-1]
@@ -168,8 +168,8 @@ class LunarLander(gym.Env):
                 maskBits=0x001,  # collide only with ground
                 restitution=0.0) # 0.99 bouncy
                 )
-        self.lander.color1 = (0.5,0.4,0.9)
-        self.lander.color2 = (0.3,0.3,0.5)
+        self.lander.color1 = (0,0,1) #(0.5,0.4,0.9)
+        self.lander.color2 = (0,0,1) #(0.3,0.3,0.5)
         self.lander.ApplyForceToCenter( (
             self.np_random.uniform(-INITIAL_RANDOM, INITIAL_RANDOM),
             self.np_random.uniform(-INITIAL_RANDOM, INITIAL_RANDOM)
@@ -188,8 +188,8 @@ class LunarLander(gym.Env):
                     maskBits=0x001)
                 )
             leg.ground_contact = False
-            leg.color1 = (0.5,0.4,0.9)
-            leg.color2 = (0.3,0.3,0.5)
+            leg.color1 = (1,1,.7)#(0.5,0.4,0.9)
+            leg.color2 = (1,1,.7)#(0.3,0.3,0.5)
             rjd = revoluteJointDef(
                 bodyA=self.lander,
                 bodyB=leg,
@@ -325,14 +325,14 @@ class LunarLander(gym.Env):
             self.viewer.set_bounds(0, VIEWPORT_W/SCALE, 0, VIEWPORT_H/SCALE)
 
         for obj in self.particles:
-            obj.ttl -= 0.15
+            obj.ttl -= 1
             obj.color1 = (max(0.2,0.2+obj.ttl), max(0.2,0.5*obj.ttl), max(0.2,0.5*obj.ttl))
             obj.color2 = (max(0.2,0.2+obj.ttl), max(0.2,0.5*obj.ttl), max(0.2,0.5*obj.ttl))
 
         self._clean_particles(False)
 
         for p in self.sky_polys:
-            self.viewer.draw_polygon(p, color=(0,0,0))
+            self.viewer.draw_polygon(p, color=(1,1,.7))
 
         for obj in self.particles + self.drawlist:
             for f in obj.fixtures:
@@ -350,10 +350,19 @@ class LunarLander(gym.Env):
         for x in [self.helipad_x1, self.helipad_x2]:
             flagy1 = self.helipad_y
             flagy2 = flagy1 + 50/SCALE
-            self.viewer.draw_polyline( [(x, flagy1), (x, flagy2)], color=(1,1,1) )
-            self.viewer.draw_polygon( [(x, flagy2), (x, flagy2-10/SCALE), (x+25/SCALE, flagy2-5/SCALE)], color=(0.8,0.8,0) )
+            self.viewer.draw_polyline( [(x, flagy1), (x, flagy2)], color=(0,0,0) )
+
+            self.viewer.draw_polygon( [(self.helipad_x1-.3, flagy1), (self.helipad_x1-.3, flagy1+.3), (self.helipad_x2, flagy1+.3), (self.helipad_x2, flagy1), ], color=(0,0,0) )
+
+            self.viewer.draw_polygon( [(self.helipad_x1, flagy1), (self.helipad_x1, flagy2), (self.helipad_x1-.3, flagy2), (self.helipad_x1-.3, flagy1), ], color=(0,0,0) )
+            self.viewer.draw_polygon( [(self.helipad_x2, flagy1), (self.helipad_x2, flagy2), (self.helipad_x2-.3, flagy2), (self.helipad_x2-.3, flagy1), ], color=(0,0,0) )
+
+            self.viewer.draw_polygon( [(x, flagy2), (x, flagy2-10/SCALE), (x+25/SCALE, flagy2-5/SCALE)], color=(1,0,0) )
 
         return self.viewer.render(return_rgb_array = mode=='rgb_array')
+
+    def get_eval(self):
+        return np.array(np.linalg.norm(self.lander.position-(0,0)))
 
 class LunarLanderContinuous(LunarLander):
     continuous = True

@@ -44,8 +44,8 @@ def corr_coef(filename_x,filename_y,i):
 
 
 
-filenames_x_array=["eval_metric_per_epispde_run_0.txt","eval_metric_per_epispde_run_9.txt"]
-filemames_y_array=["episode_reward_run_0.txt","episode_reward_run_9.txt"]
+filenames_x_array=["eval_metric_per_epispde_run_8.txt","eval_metric_per_epispde_run_9.txt"]
+filemames_y_array=["episode_reward_run_8.txt","episode_reward_run_9.txt"]
 corr_per_run=[]
 for i in range(len(filenames_x_array)):
     filename_x=filenames_x_array[i]

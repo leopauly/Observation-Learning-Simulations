@@ -10,7 +10,15 @@ import scipy.misc
 class PusherEnv3DOFReal(mujoco_env.MujocoEnv, utils.EzPickle):
     def __init__(self):
         utils.EzPickle.__init__(self)
-        mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real.xml', 5, viewersize=(72*5, 128*5))
+
+    def initialize_env(self):
+        if(self.switch==3):
+            mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_reward_eval_1.xml', 5, viewersize=(72*5, 128*5))
+        elif(self.switch==4):
+            mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_reward_eval_2.xml', 5, viewersize=(72*5, 128*5))
+        else:
+            mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1.xml', 5, viewersize=(72*5, 128*5))
+        
 
     def _step(self, a):
         pobj = self.get_body_com("object")
@@ -44,14 +52,44 @@ class PusherEnv3DOFReal(mujoco_env.MujocoEnv, utils.EzPickle):
     def viewer_setup(self):
         # self.itr = 0
 
-
+        
+        '''
+        ##Values for Experiment 1,2 under normal conditions
         self.viewer.cam.trackbodyid=-1
         self.viewer.cam.distance = 3.0
         self.viewer.cam.elevation= -90
         self.viewer.cam.azimuth= -90
-        self.viewer.cam.lookat[0]-=1.5  #2
+        self.viewer.cam.lookat[0]-=1.5  
         self.viewer.cam.lookat[1]-=1.7
+       
         '''
+
+        ##Values for extreme conditions (3D view)- Hide this when running experiments under normal conditions: 
+        
+        if (self.switch==1):
+            self.viewer.cam.trackbodyid=-1
+            self.viewer.cam.distance = 3.0
+            self.viewer.cam.elevation= -48
+            self.viewer.cam.azimuth= -90
+            self.viewer.cam.lookat[0]-=1.5  
+            self.viewer.cam.lookat[1]-=1.7
+        elif(self.switch==2):
+            self.viewer.cam.trackbodyid=-1
+            self.viewer.cam.distance = 3.0
+            self.viewer.cam.elevation= -38
+            self.viewer.cam.azimuth= -90
+            self.viewer.cam.lookat[0]-=1.5  
+            self.viewer.cam.lookat[1]-=1.7
+        else:
+            self.viewer.cam.trackbodyid=-1
+            self.viewer.cam.distance = 3.0
+            self.viewer.cam.elevation= -90
+            self.viewer.cam.azimuth= -90
+            self.viewer.cam.lookat[0]-=1.5  
+            self.viewer.cam.lookat[1]-=1.7
+
+        '''
+
         self.viewer.cam.trackbodyid=0
         cam_dist = 3
         if hasattr(self, "_kwargs") and 'cam_dist' in self._kwargs:
@@ -69,7 +107,9 @@ class PusherEnv3DOFReal(mujoco_env.MujocoEnv, utils.EzPickle):
         self.viewer.cam.distance = cam_pos[3]
         self.viewer.cam.elevation = cam_pos[4]
         self.viewer.cam.azimuth = cam_pos[5]
-        self.viewer.cam.trackbodyid=-1 '''
+        self.viewer.cam.trackbodyid=-1
+
+        '''
 
     def reset_model(self):
         self.itr = 0
@@ -106,11 +146,8 @@ class PusherEnv3DOFReal(mujoco_env.MujocoEnv, utils.EzPickle):
         ])
 
     def get_eval(self):
-        #print('arm position ',self.get_body_com("object"))
-        #print('goal position',self.get_body_com("goal"))
-        
-        self.arm_pos=self.get_body_com("object")   #hide this when running exp1
-        #self.arm_pos=self.get_body_com("distal_4")  #hide this when running exp2
+        #self.arm_pos=self.get_body_com("object")   #hide this when running exp1
+        self.arm_pos=self.get_body_com("distal_4")  #hide this when running exp2
         self.goal_pos=self.get_body_com("goal")
         self.eval=np.linalg.norm(self.arm_pos-self.goal_pos)
         return self.eval
