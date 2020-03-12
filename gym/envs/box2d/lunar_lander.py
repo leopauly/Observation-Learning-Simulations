@@ -188,8 +188,8 @@ class LunarLander(gym.Env):
                     maskBits=0x001)
                 )
             leg.ground_contact = False
-            leg.color1 = (1,1,.7)#(0.5,0.4,0.9)
-            leg.color2 = (1,1,.7)#(0.3,0.3,0.5)
+            leg.color1 = (0,0,1)#(0.5,0.4,0.9)
+            leg.color2 = (0,0,1)#(0.3,0.3,0.5)
             rjd = revoluteJointDef(
                 bodyA=self.lander,
                 bodyB=leg,
@@ -332,7 +332,7 @@ class LunarLander(gym.Env):
         self._clean_particles(False)
 
         for p in self.sky_polys:
-            self.viewer.draw_polygon(p, color=(1,1,.7))
+            self.viewer.draw_polygon(p, color=(1,1,1))
 
         for obj in self.particles + self.drawlist:
             for f in obj.fixtures:
@@ -404,10 +404,14 @@ if __name__=="__main__":
     s = env.reset()
     total_reward = 0
     steps = 0
+    key_check=1
     while True:
         a = heuristic(env, s)
         s, r, done, info = env.step(a)
         env.render()
+        if(key_check==1):
+            input('Press any key to start execution!')
+            key_check=0
         total_reward += r
         if steps % 20 == 0 or done:
             print(["{:+0.2f}".format(x) for x in s])

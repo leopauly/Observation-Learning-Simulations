@@ -70,7 +70,6 @@ class Frame_Feature:
          with self.g.as_default():
               self.sess=tf.InteractiveSession(config=tf.ConfigProto(allow_soft_placement=True,log_device_placement=False))
               self.base_model=tf.keras.applications.vgg16.VGG16(include_top=False, weights='imagenet', input_tensor=None, input_shape=(height,width,channel), pooling=None, classes=1000)
-              #print(tf.contrib.graph_editor.get_tensors(self.g))   #(tf.get_default_graph()))
               self.base_model._make_predict_function()
               print('VggNet loaded with Imagenet values')
     
@@ -179,7 +178,7 @@ def s2l():
     reward_st = np.array([0])  #saving reward
     reward_st_all = np.array([0])  #saving reward after every step
     eval_metric_st= np.array([0]) #saving evalutation metric
-    
+        
     #activity_obj=Vid_Feature()
     #demo_vid_array=demo_array_extractor(demo_folder)
     #demo_features=activity_obj.feature_extractor(demo_vid_array)
@@ -214,7 +213,6 @@ def s2l():
 
                 action = agent.get_action(np.reshape(x,[1,num_states]))   # +1 for oracle and exp1
                 noise = exploration_noise.noise()
-                #action = action[0] + noise*100 #Select action according to current policy and exploration noise
                 print ('Action at episode-',episode,'rollout-',t, 'step-', i ," :",action)
 
                
@@ -225,7 +223,7 @@ def s2l():
                 vid_robo_.append(obs_robo)
                 observation=np.array(frame_obj.frame_feature_extractor(np.array(obs_robo)))
                 observation=observation.reshape(-1)
-                #pasue()
+
     del agent
     del frame_obj
 

@@ -11,10 +11,8 @@ import math
 class Saved_Policy:
     
     def __init__(self,num_states,num_actions):
-        #self.policy_savedpath="/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/Baseline2/M_10trials_0deg/best_policies/"
-        self.policy_savedpath="/home/ironman2/S2l_storage/policies_saved/thesis/proposed/push_robo_M3/"     
-        self.network_graph_name='policy.episode-302.meta'
-        self.network_name='policy.episode-302'
+        self.policy_savedpath="/home/ironman2/S2l_storage/policies_saved/thesis/proposed/180deg_10trails_0/"     
+        self.network_name='policy.episode-919'
         ### policy_net
         self.g=tf.Graph()
         with self.g.as_default():
@@ -24,7 +22,6 @@ class Saved_Policy:
             ## Restore model weights from previously saved model
             _,_,_,_,_,_,self.actor_state_in,self.actor_model = self.create_actor_net(num_states, num_actions)
             self.saver = tf.train.Saver()
-            #self.saver = tf.train.import_meta_graph(os.path.join(self.policy_savedpath,self.network_graph_name))
             self.saver.restore(self.sess, os.path.join(self.policy_savedpath,self.network_name))
             print("Model restored from file: %s" % self.policy_savedpath,flush=True)    
 

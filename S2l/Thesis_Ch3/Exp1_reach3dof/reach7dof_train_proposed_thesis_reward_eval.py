@@ -44,18 +44,38 @@ crop_size=112
 cluster_length=16 
 nb_classes=2 
 feature_size=4608 
-demo_folder='./Demos/demo_reach_0deg_new/'
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 switch=int(sys.argv[3])
-if (switch==1):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/3Dview1_new/'
+if(switch==0):
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/rewardmap_baseline/'
+elif (switch==1):
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/rewardmap_3Dview1/'
 elif (switch==2):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/3Dview2_new/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/rewardmap_3Dview2/'
 elif (switch==3):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/Targetpos1_new_1/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/rewardmap_targetpos1/'
 elif (switch==4):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/Targetpos2_new_1/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/rewardmap_targetpos2/'
+elif (switch==-2):
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/rewardmap_V2/'
+elif (switch==-4):
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/rewardmap_Obj2_new/'
+    demo_folder='./Demos/demo_reach_180deg_new/'  
+elif (switch==-3):
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/rewardmap_Obj1/'
+    demo_folder='./Demos/demo_reach_0deg_new/'  
+elif (switch==-5):
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/rewardmap_BG/'
+    demo_folder='./Demos/demo_reach_0deg_new/' 
+elif (switch==-6):
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/rewardmap_M_new/'
+    demo_folder='./Demos/push_demo_human/'
+else:
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/'
+    demo_folder='./Demos/demo_reach_0deg_new/'
+  
+
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
@@ -125,7 +145,6 @@ def demo_array_extractor(demo_vid_path):
 def sampling_obs(vid_robo_all,num_frames_per_clip=cluster_length):
     total_obs=len(vid_robo_all)
     jump=math.floor(total_obs/num_frames_per_clip)
-    print('jump',jump,'totol ob',total_obs,'vid_robo_all',vid_robo_all.shape)
     loop=0
     ret_arr=[]
     for i in range(0,total_obs,jump):
@@ -161,7 +180,7 @@ class Vid_Feature:
     def feature_extractor(self,vid_np):
         self.vid_=vid_np.reshape(-1,cluster_length,height,width,channel)
         f_v = self.sess.graph.get_tensor_by_name('flatten_1/Reshape:0')
-        self.f_v_val=np.array(self.sess.run([f_v], feed_dict={'conv1_input:0':self.vid_,'Placeholder:0':self.vid_ }))#,K.learning_phase(): 0 }))
+        self.f_v_val=np.array(self.sess.run([f_v], feed_dict={'conv1_input:0':self.vid_,'Placeholder:0':self.vid_ }))
         self.features=np.reshape(self.f_v_val,(-1))
         return self.features
 
@@ -189,14 +208,18 @@ def s2l(i_run):
     
     print ("Number of Steps per episode:", steps)
     reward_st_per_episode = np.array([0])  #saving reward
+    man_pos_x_st_per_episode = np.array([0])
+    man_pos_y_st_per_episode = np.array([0])
     eval_metric_st= np.array([0])
     eval_metric_st_per_episode= np.array([0])
     reward_st_per_step = np.array([0])  #saving reward after every step
     
     activity_obj=Vid_Feature()
     demo_vid_array=demo_array_extractor(demo_folder)
+    if(i_run==0):
+        plt.imshow(demo_vid_array[0])
+        plt.savefig('demo_img'+str(switch) +'.png')
     demo_features=activity_obj.feature_extractor(demo_vid_array)
-
     frame_obj=Frame_Feature()
 
     for episode in range(num_episodes):
@@ -204,11 +227,14 @@ def s2l(i_run):
         env.reset()   # Reset env in the begining of each episode
         env.render()
         obs_img=env.render(mode='rgb_array')   # Get the observation
+        if(i_run==0 and episode==0):
+            plt.imshow(obs_img)
+            plt.savefig('env_img'+str(switch) +'.png')
         obs_img=np.array(misc.imresize(obs_img,[112,112,3]))
         observation =np.array(frame_obj.frame_feature_extractor(obs_img))
         observation=observation.reshape(-1)
+        
         reward_per_episode = 0
-
         vid_robo_=[]
 
         for i in range(steps):
@@ -218,7 +244,6 @@ def s2l(i_run):
             action = agent.evaluate_actor(np.reshape(x,[1,num_states]))
             action = action+1
             noise = (exploration_noise.noise()/(episode+1))
-            print('noise',noise)
             action = action[0] + noise 
             print ('Action at',i_run ,'episode-',episode, 'step-', i ," :",action)
 
@@ -266,39 +291,49 @@ def s2l(i_run):
             if counter > start_training: 
                     agent.train()
             print ('\n\n')
+            print('Episode: ',episode,' Manipulator position: ',env.get_man_pos())
               
             reward_per_step=reward
             reward_per_episode+=reward_per_step  
 
-        #check if episode ends:
-        
+        ## Printing and saving episode rewards
         print ('Episode: ',episode,' Episode Reward: ',reward_per_episode)
-        print ("Printing reward to file")
         exploration_noise.reset() #reinitializing random noise for action exploration
         reward_st_per_episode = np.append(reward_st_per_episode,reward_per_episode)
         np.savetxt(base_dir+'episode_reward_run_'+str(i_run)+'.txt',reward_st_per_episode, fmt='%f', newline="\n")
-        print ('\n\n')
-                     
-        total_reward+=reward_per_episode  
 
-        '''
+        ## Printing and saving final mnaipulator position
+        manipulator_final_pos=env.get_man_pos()
+        print('Episode: ',episode,' Manipulator position: ',manipulator_final_pos)
+
+        man_pos_x_st_per_episode = np.append(man_pos_x_st_per_episode,manipulator_final_pos[0])
+        np.savetxt(base_dir+'episode_man_x_pos_run_'+str(i_run)+'.txt',man_pos_x_st_per_episode, fmt='%f', newline="\n")
+
+        man_pos_y_st_per_episode = np.append(man_pos_y_st_per_episode,manipulator_final_pos[1])
+        np.savetxt(base_dir+'episode_man_y_pos_run_'+str(i_run)+'.txt',man_pos_y_st_per_episode, fmt='%f', newline="\n")
+        
+        ## Saving
         if (best_reward<reward_per_episode):
             best_reward=reward_per_episode
             print('best reward:',best_reward)
             print('current reward:',reward_per_episode)
             print('saving policy for episode..................:',episode)
-            agent.save_actor(episode,i_run)
-        '''
-
-        # Printing eval_metric after every step
+            #agent.save_actor(episode,i_run)
+        
+        ## Printing eval_metric after every step
         eval_metric=np.array(env.get_eval())
         eval_metric=eval_metric.reshape(-1)
         print('Distance to goal at the end  of episode:',eval_metric)    
         eval_metric_st_per_episode = np.append(eval_metric_st_per_episode,eval_metric)           
         np.savetxt(base_dir+'eval_metric_per_epispde_run_'+str(i_run)+'.txt', eval_metric_st_per_episode, newline="\n")
 
+        total_reward+=reward_per_episode
+
+
     print ("Average reward per episode {}".format(total_reward / num_episodes))
     print('Best episode reward',best_reward)   
+    print ('\n\n')
+
 
     del agent
     del activity_obj

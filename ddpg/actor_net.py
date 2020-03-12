@@ -11,7 +11,7 @@ class ActorNet:
     def __init__(self,num_states,num_actions):
         self.num_states=num_states
         self.num_actions=num_actions
-        self.policy_savepath="/home/ironman2/S2l_storage/policies_saved/Thesis_Ch4/Task1.episode"
+        self.policy_savepath="/home/ironman2/S2l_storage/policies_saved/Thesis_Ch4/Task1/Task1_0deg_obj/"
         self.g=tf.Graph()
         with self.g.as_default():
             self.sess = tf.InteractiveSession()

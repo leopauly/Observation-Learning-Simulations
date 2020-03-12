@@ -39,7 +39,7 @@ assert isinstance(env.observation_space, Box), "observation space must be contin
 assert isinstance(env.action_space, Box), "action space must be continuous"
 
 ## Defining vars 
-num_episodes=40
+num_episodes=100
 steps=80 # No of steps taken in a episode
 is_batch_norm = False 
 xrange=range 
@@ -51,7 +51,7 @@ crop_size=112
 cluster_length=16 # No: of frames in a video
 nb_classes=2 
 feature_size=4608 # state feature size 
-demo_folder='./Demos/Task1_0deg/'
+demo_folder='./Demos/Task1_0deg_obj/'
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 class Frame_Feature:

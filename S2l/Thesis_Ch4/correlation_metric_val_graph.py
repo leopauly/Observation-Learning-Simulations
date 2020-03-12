@@ -1,11 +1,12 @@
 ## @leopauly
-## For finding correlation between rewards per episode vs eval_metric per episode
+## For finding correlation between rewards per episode vs eval_metric per episode for top two runs
 
 
-## loading values
+## Imports
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
+import sys
 import matplotlib.pyplot as plt
 matplotlib.style.use('ggplot')
 
@@ -36,7 +37,6 @@ def corr_coef(filename_x,filename_y,i):
 
 
     plt.scatter(x_norm,y_new,color='red')
-    plt.hold(True)
 
     #-------------------------------------------------------------------------------------------------#
    
@@ -44,8 +44,12 @@ def corr_coef(filename_x,filename_y,i):
 
 
 
-filenames_x_array=["eval_metric_per_epispde_run_5.txt","eval_metric_per_epispde_run_9.txt"]
-filemames_y_array=["episode_reward_run_5.txt","episode_reward_run_9.txt"]
+run1=sys.argv[1]
+run2=sys.argv[2]
+filenames_x_array=["eval_metric_per_epispde_run_"+run1+".txt","eval_metric_per_epispde_run_"+run2+".txt"]
+filemames_y_array=["episode_reward_run_"+run1+".txt","episode_reward_run_"+run2+".txt"]
+print('Reward files:',filenames_x_array)
+print('Eval metric files',filemames_y_array)
 corr_per_run=[]
 for i in range(len(filenames_x_array)):
     filename_x=filenames_x_array[i]

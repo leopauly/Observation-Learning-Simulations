@@ -10,7 +10,6 @@ import numpy as np
 np.set_printoptions(suppress=True)
 import cv2
 from ddpg import DDPG
-from ou_noise import OUNoise
 import matplotlib.pyplot as plt
 import scipy.misc as misc
 import os
@@ -40,19 +39,18 @@ assert isinstance(env.observation_space, Box), "observation space must be contin
 assert isinstance(env.action_space, Box), "action space must be continuous"
 
 ## Defining vars 
-num_episodes=40
+num_episodes=100
 steps=80 # No of steps taken in a episode
 is_batch_norm = False 
 xrange=range 
-start_training=64 # Buffer size, before starting to train the RL algorithm
+start_training=64 
 height=112 
 width=112 
 channel=3
 crop_size=112
-cluster_length=16 # No: of frames in a video
+cluster_length=16 
 nb_classes=2 
-feature_size=4608 # state feature size 
-demo_folder='./Demos/Task1/'
+feature_size=4608
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 def custom_get_eval(observed_value):
@@ -75,6 +73,7 @@ def s2l(i_run):
 
     agent = Saved_Policy(num_states,num_actions)
     eval_metric_st= np.array([0])
+    obs_store=[]
     
     for episode in range(num_episodes):
         print ("==== Starting episode no:",episode,"====","\n")
@@ -111,8 +110,7 @@ def s2l(i_run):
             action=np.clip(action,action_min,action_max)
             print ('Action at episode clipped-',episode, 'step-', i ," :",action)
                
-            observation,get_eval,done,info=env.step(action)
-            env.render()
+            observation,_,_,_=env.step(action)
             obs_robo_=env.render(mode='rgb_array')   # Get the observation
             #obs_robo=misc.imresize(obs_robo_,[112,112,3])
             #observation=np.array(frame_obj.frame_feature_extractor(np.array(obs_robo)))
