@@ -6,6 +6,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
+import sys
 import matplotlib.pyplot as plt
 matplotlib.style.use('ggplot')
 
@@ -36,16 +37,20 @@ def corr_coef(filename_x,filename_y,i):
 
 
     plt.scatter(x_norm,y_new,color='red')
-    plt.hold(True)
 
     #-------------------------------------------------------------------------------------------------#
    
     return cor_coef
 
 
+run_a=sys.argv[1]
+run_b=sys.argv[2]
 
-filenames_x_array=["eval_metric_per_epispde_run_2.txt","eval_metric_per_epispde_run_7.txt"]
-filemames_y_array=["episode_reward_run_2.txt","episode_reward_run_7.txt"]
+filenames_x_array=["eval_metric_per_epispde_run_"+run_a+".txt","eval_metric_per_epispde_run_"+run_b+".txt"]
+filemames_y_array=["episode_reward_run_"+run_a+".txt","episode_reward_run_"+run_b+".txt"]
+print('Eval metric files:',filenames_x_array)
+print('Reward files:',filemames_y_array)
+
 corr_per_run=[]
 for i in range(len(filenames_x_array)):
     filename_x=filenames_x_array[i]

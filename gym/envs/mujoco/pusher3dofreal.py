@@ -18,6 +18,10 @@ class PusherEnv3DOFReal(mujoco_env.MujocoEnv, utils.EzPickle):
             mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_reward_eval_targetpos_1.xml', 5, viewersize=(72*5, 128*5))
         elif(self.switch==4):
             mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_reward_eval_targetpos_2.xml', 5, viewersize=(72*5, 128*5))
+        elif(self.switch==5):
+            mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_reward_eval_multi_target_close.xml', 5, viewersize=(72*5, 128*5))
+        elif(self.switch==6):
+            mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_reward_eval_multi_target_far.xml', 5, viewersize=(72*5, 128*5))
         elif(self.switch==-4):
             mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_Obj2.xml', 5, viewersize=(72*5, 128*5))
         elif(self.switch==-5):

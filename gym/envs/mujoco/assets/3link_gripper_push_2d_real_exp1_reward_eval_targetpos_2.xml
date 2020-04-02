@@ -61,11 +61,17 @@
         <!-- Backgoround Object propoerties --->
 
 
-        <body name="goal" pos="-1 -.8 -0.145"> 
+        <body name="goal" pos="-1.5 -.3 -0.145"> 
             <!-- Targer pos change exp 1,2:
             original pos: pos="0 -1.0 -0.145
             Taret pos1: pos="1 -.8 -0.145
             Target pos2: pos="-1 -.8 -0.145
+
+
+            <!-- Targer pos change exp 1,2_difficult scenario:
+            original pos: pos="0 -1.0 -0.145
+            Target pos2_diff: pos="-1.5 -.3 -0.145
+              -->
               -->
 
             <!--<body name="goal" pos="0.0 0.0 -0.1">  rgba (brown)="0.4 .26 0.13 1"-->

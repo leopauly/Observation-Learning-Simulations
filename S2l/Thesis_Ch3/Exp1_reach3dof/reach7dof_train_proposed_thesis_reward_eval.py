@@ -48,15 +48,23 @@ feature_size=4608
 
 switch=int(sys.argv[3])
 if(switch==0):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/rewardmap_baseline/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/rewardmap_misc/'
 elif (switch==1):
     base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/rewardmap_3Dview1/'
 elif (switch==2):
     base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/rewardmap_3Dview2/'
 elif (switch==3):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/rewardmap_targetpos1/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/Target_pos1_diff/'
+    demo_folder='./Demos/demo_reach_0deg_new/' 
 elif (switch==4):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/rewardmap_targetpos2/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/Target_pos2_diff/'
+    demo_folder='./Demos/demo_reach_0deg_new/' 
+elif (switch==5):
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/multi_target_close/'
+    demo_folder='./Demos/demo_reach_0deg_new/' 
+elif (switch==6):
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/multi_target_far/'
+    demo_folder='./Demos/demo_reach_0deg_new/' 
 elif (switch==-2):
     base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval/rewardmap_V2/'
 elif (switch==-4):
@@ -164,7 +172,7 @@ def sampling_obs(vid_robo_all,num_frames_per_clip=cluster_length):
 class Vid_Feature:
     
     def __init__(self):
-        self.saved_path='/home/ironman2/S2l_storage/trained_activity_nets_thesis/' 
+        self.saved_path='/home/ironman2/S2l_storage/' 
         self.network_name='activity_model.ckpt-67.meta'
         ### Activity_net
         self.g=tf.Graph()

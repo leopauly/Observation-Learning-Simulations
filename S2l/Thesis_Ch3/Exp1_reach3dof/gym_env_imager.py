@@ -3,9 +3,10 @@
 import gym
 import imageio
 import numpy as np
+import sys
 
 env = gym.make('Pusher3DOFReal-v1')
-env.switch=-4
+env.switch=int(sys.argv[1])
 env.initialize_env()
 env.reset()
 
