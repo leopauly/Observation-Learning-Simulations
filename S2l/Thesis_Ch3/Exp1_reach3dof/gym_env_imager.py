@@ -4,6 +4,9 @@ import gym
 import imageio
 import numpy as np
 import sys
+import os
+
+os.system('source activate rllab3')
 
 env = gym.make('Pusher3DOFReal-v1')
 env.switch=int(sys.argv[1])

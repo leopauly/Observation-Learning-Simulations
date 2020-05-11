@@ -102,36 +102,14 @@ class PusherEnv3DOFReal(mujoco_env.MujocoEnv, utils.EzPickle):
             self.viewer.cam.azimuth= -90
             self.viewer.cam.lookat[0]-=1.5  
             self.viewer.cam.lookat[1]-=1.7
-        elif(self.switch==3):
-            self.viewer.cam.trackbodyid=-1
-            self.viewer.cam.distance = 3.0
-            self.viewer.cam.elevation= -90
-            self.viewer.cam.azimuth= -90
-            self.viewer.cam.lookat[0]-=.92
-            # normal 1:  1.5  /  lr0:  1.15 /  lr1: .72  / lr2:1.36/ lr3,4:1.5/
-            # lr_traj1:1.95 /
-            self.viewer.cam.lookat[1]-=1.95
-            # normal 1:  1.7  /  lr0:  1.7 /  lr1: 2.2 / lr2:1.96 / lr3,4:1.97/
-            # lr_traj1:1.95 /
-        elif(self.switch==4):
-            self.viewer.cam.trackbodyid=-1
-            self.viewer.cam.distance = 3.0
-            self.viewer.cam.elevation= -90
-            self.viewer.cam.azimuth= -90
-            self.viewer.cam.lookat[0]-=1.52
-            # normal 1:  1.5  /  ll0:  1.15 /  ll1: / ll2:/ ll3&4:/
-            # ll_traj0:1.55 /  ll_traj1:1.52 / 
-            self.viewer.cam.lookat[1]-=1.95
-            # normal 1:  1.7  /  ll0:  1.7 /  ll1:  / ll2: /  ll3&4:/
-            # ll_traj0:1.83 /  ll_traj1:1.95 /
-            
         else:
-            self.viewer.cam.trackbodyid=-1
+            self.viewer.cam.trackbodyid=-2
             self.viewer.cam.distance = 3.0
             self.viewer.cam.elevation= -90
             self.viewer.cam.azimuth= -90
-            self.viewer.cam.lookat[0]-=1.5
+            self.viewer.cam.lookat[0]-=1.5  
             self.viewer.cam.lookat[1]-=1.7
+
         '''
 
         self.viewer.cam.trackbodyid=0

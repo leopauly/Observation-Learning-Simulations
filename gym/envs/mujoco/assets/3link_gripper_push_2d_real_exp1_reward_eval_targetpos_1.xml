@@ -61,7 +61,7 @@
         <!-- Backgoround Object propoerties --->
 
 
-        <body name="goal" pos="1.2 0 -0.145"> 
+        <body name="goal" pos="-1.4 -.5 -0.145"> 
             <!-- Targer pos change exp 1,2:
             original pos: pos="0 -1.0 -0.145
             Taret pos1: pos="1 -.8 -0.145
@@ -70,7 +70,19 @@
  
             <!-- Targer pos change exp 1,2_difficult scenario:
             original pos: pos="0 -1.0 -0.145
-            Taret pos1_diff: pos=1.4 -1.2 -0.145 (cmap0) / "1.6 -.8 -0.145" (cmap1) / 1.3 -.6 -0.145 (cmap2)/ 1.9 -.2 -0.145" (cmap3) / "1.9 0 -0.145 (cmap4)/ "1.5 0 -0.145" (camp5)/
+            Taret pos1_diff: pos= 
+            Conv5: 1.4 -1.2 -0.145 (cmap0) / "1.6 -.8 -0.145" (cmap1) / 1.3 -.6 -0.145 (cmap2)/ 1.9 -.2 -0.145" (cmap3) / "1.9 0 -0.145 (cmap4)/ "1.5 0 -0.145" (camp5)/
+            FC6/FC7/FC8/Cov5_80eps/Conv5_norm2pow3:    1.2 -1 -0.145(cmap)/
+
+            Taret pos1_diff_modified: pos=
+            Conv5_norm2pow3:  -1.8 0 -0.145 (cmap)
+            conv5/ Cov5_80eps_ran : -1.8 0 -0.145 (cmap- modified0)/"-1.2 0 -0.145"(cmap- modified1)/"-1.7 -1.2 -0.145"(cmap- modified2)/"-1.7 -.8 -0.145"((cmap- modified3)/""-1.8 -.5 -0.145""((cmap- modified4)
+            
+            pos_layout_right=
+            conv5/conv5_80eps/random_weights_80eps:  -.9 -1 -0.145" (cmap - lr0)/ -1.8 -0 -0.145(cmap - lr1)/ -.45 -.5 -0.145" (cmap - lr2)/ .1 -.5 -0.145" (cmap-lr3,4) / 
+            rl4-- no targets (target color 1,1,1,1)
+
+            Traj_conv5/Traj_Fc6/Traj_Fc7/Traj_Fc8/Traj_rand_weights:"-1.4 .5 -0.145"  (lr_traj1)
               -->
 
 

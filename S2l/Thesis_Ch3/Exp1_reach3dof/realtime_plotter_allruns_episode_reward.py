@@ -12,8 +12,8 @@ num_runs=int(sys.argv[1])
 while(True):
 	for run in range(num_runs):
 			try:
-				y = np.loadtxt('reward_per_step_run_'+str(run)+'.txt', unpack=True)
-				y_new=[y_ for y_ in y if y_!=0]
+				y = np.loadtxt('episode_reward_run_'+str(run)+'.txt', unpack=True)
+				y_new=y[1:len(y)]
 				x=range(len(y_new))
 				#print(x,y_new)
 

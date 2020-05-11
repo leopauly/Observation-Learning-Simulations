@@ -10,7 +10,7 @@ run=sys.argv[1]
 
 window_size=int(sys.argv[2])
 y = np.loadtxt('episode_reward_run_'+run+'.txt', unpack=True)
-y_new=[y_ for y_ in y if y_!=0]
+y_new=y[1:len(y)]
 
 x=range(len(y_new))
 plt.figure(1)

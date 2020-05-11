@@ -10,17 +10,15 @@ plt.ion()
 run=sys.argv[1]
 
 while (True):
-	y = np.loadtxt('reward_per_step_run_'+run+'.txt', unpack=True)
-	y_new=[y_ for y_ in y if y_!=-700 and y_!=0]
+	y = np.loadtxt('episode_reward_run_'+run+'.txt', unpack=True)
+	y_new=y[1:len(y)]
 	x=range(len(y_new))
-	#print(x,y_new)
 
 	plt.figure(1)
 	plt.plot(x,y_new)
 	plt.title('Reward')
 	plt.xlabel('Episode')
 	plt.ylabel('reward per episode')
-	#plt.savefig('Rewards.png')
 	plt.show()
 	plt.pause(3)
 

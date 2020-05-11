@@ -32,7 +32,7 @@ import lscript as lsp
 import modelling as md
 
 ## Defining vars
-num_episodes=20
+num_episodes=80
 steps=60 # No of actions taken in a roll out
 is_batch_norm = False #batch normalization switch
 xrange=range # For python3
@@ -44,48 +44,47 @@ crop_size=112
 cluster_length=16 
 nb_classes=2 
 feature_size=4608 
-norm_val=2
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 switch=int(sys.argv[3])
 if(switch==0):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/rewardmap_baseline/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps/rewardmap_misc/'
     demo_folder='./Demos/demo_reach_0deg_new/'
 elif (switch==1):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/rewardmap_3Dview1/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/rewardmap_3Dview1/'
     demo_folder='./Demos/demo_reach_0deg_new/'
 elif (switch==2):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/rewardmap_3Dview2/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/rewardmap_3Dview2/'
     demo_folder='./Demos/demo_reach_0deg_new/'
 elif (switch==3):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps/rewardmap_lr0/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Rewmaps_Conv5_norm2pow5_80eps/random_weights_lr0/'
     demo_folder='./Demos/demo_reach_0deg_new/' 
 elif (switch==4):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/rewardmap_target_pos2_diff/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Rewmaps_Conv5_norm2pow5_80eps/random_weights_ll0/'
     demo_folder='./Demos/demo_reach_0deg_new/' 
 elif (switch==5):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/multi_target_close/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/multi_target_close/'
     demo_folder='./Demos/demo_reach_0deg_new/' 
 elif (switch==6):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/multi_target_far/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/multi_target_far/'
     demo_folder='./Demos/demo_reach_0deg_new/' 
 elif (switch==-2):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/rewardmap_V2/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Rewmaps_Conv5_norm2pow5_80eps/random_weights_V2/'
     demo_folder='./Demos/demo_reach_180deg_new/'
 elif (switch==-4):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/rewardmap_Obj2_new/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/rewardmap_Obj2_new/'
     demo_folder='./Demos/demo_reach_180deg_new/'  
 elif (switch==-3):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/rewardmap_Obj1/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/rewardmap_Obj1/'
     demo_folder='./Demos/demo_reach_0deg_new/'  
 elif (switch==-5):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/rewardmap_BG/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/rewardmap_BG/'
     demo_folder='./Demos/demo_reach_0deg_new/' 
 elif (switch==-6):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/rewardmap_M_new/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Rewmaps_Conv5_norm2pow5_80eps/random_weights_M/'
     demo_folder='./Demos/demo_reach_0deg_h.s/'
 else:
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/rewardmap_baseline/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Rewmaps_Conv5_norm2pow5_80eps/random_weights_baseline/'
     demo_folder='./Demos/demo_reach_0deg_new/'
   
 os.system('mkdir %s' % base_dir)
@@ -188,6 +187,7 @@ class Vid_Feature:
             ## Restore model weights from previously saved model
             self.saver = tf.train.import_meta_graph(os.path.join(self.saved_path,self.network_name))
             self.saver.restore(self.sess, os.path.join(self.saved_path,self.network_weigths_name))
+            #self.sess.run(tf.global_variables_initializer())
             print("Model restored from file: %s" % self.saved_path,flush=True)    
 
     ## For extracting activity features
@@ -201,8 +201,10 @@ class Vid_Feature:
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 def distance(f_demo,f_robo):
+    norm_val=2
+    norm_pow=1
     distance_=np.linalg.norm(f_demo-f_robo,ord=norm_val)
-    return (distance_)
+    return pow(distance_,norm_pow)
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
@@ -219,7 +221,7 @@ def s2l(i_run):
     exploration_noise = OUNoise(env.action_space.shape[0])
     counter=0 
     total_reward=0
-    best_reward=-1000000000
+    best_reward=-10000
     
     print ("Number of Steps per episode:", steps)
     reward_st_per_episode = np.array([0])  #saving reward
@@ -304,7 +306,7 @@ def s2l(i_run):
                 
             #train critic and actor network
             if counter > start_training: 
-                    agent.train()
+                agent.train() #
             print ('\n\n')
             print('Episode: ',episode,' Manipulator position: ',env.get_man_pos())
               

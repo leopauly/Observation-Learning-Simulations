@@ -44,48 +44,47 @@ crop_size=112
 cluster_length=16 
 nb_classes=2 
 feature_size=4608 
-norm_val=2
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 switch=int(sys.argv[3])
 if(switch==0):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/rewardmap_baseline/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps/rewardmap_misc/'
     demo_folder='./Demos/demo_reach_0deg_new/'
 elif (switch==1):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/rewardmap_3Dview1/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/rewardmap_3Dview1/'
     demo_folder='./Demos/demo_reach_0deg_new/'
 elif (switch==2):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/rewardmap_3Dview2/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/rewardmap_3Dview2/'
     demo_folder='./Demos/demo_reach_0deg_new/'
 elif (switch==3):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps/rewardmap_lr0/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Traj_maps_rand_weights/lr_traj1/'
     demo_folder='./Demos/demo_reach_0deg_new/' 
 elif (switch==4):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/rewardmap_target_pos2_diff/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Traj_maps_rand_weights/ll_traj1/'
     demo_folder='./Demos/demo_reach_0deg_new/' 
 elif (switch==5):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/multi_target_close/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/multi_target_close/'
     demo_folder='./Demos/demo_reach_0deg_new/' 
 elif (switch==6):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/multi_target_far/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/multi_target_far/'
     demo_folder='./Demos/demo_reach_0deg_new/' 
 elif (switch==-2):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/rewardmap_V2/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Rewmaps_Conv5_norm2pow5_80eps/random_weights_V2/'
     demo_folder='./Demos/demo_reach_180deg_new/'
 elif (switch==-4):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/rewardmap_Obj2_new/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/rewardmap_Obj2_new/'
     demo_folder='./Demos/demo_reach_180deg_new/'  
 elif (switch==-3):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/rewardmap_Obj1/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/rewardmap_Obj1/'
     demo_folder='./Demos/demo_reach_0deg_new/'  
 elif (switch==-5):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/rewardmap_BG/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/rewardmap_BG/'
     demo_folder='./Demos/demo_reach_0deg_new/' 
 elif (switch==-6):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/rewardmap_M_new/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Rewmaps_Conv5_norm2pow5_80eps/random_weights_M/'
     demo_folder='./Demos/demo_reach_0deg_h.s/'
 else:
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5/rewardmap_baseline/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Traj_maps_rand_weights/baseline/'
     demo_folder='./Demos/demo_reach_0deg_new/'
   
 os.system('mkdir %s' % base_dir)
@@ -187,7 +186,8 @@ class Vid_Feature:
             self.sess = tf.InteractiveSession(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=False))
             ## Restore model weights from previously saved model
             self.saver = tf.train.import_meta_graph(os.path.join(self.saved_path,self.network_name))
-            self.saver.restore(self.sess, os.path.join(self.saved_path,self.network_weigths_name))
+            #self.saver.restore(self.sess, os.path.join(self.saved_path,self.network_weigths_name))
+            self.sess.run(tf.global_variables_initializer())
             print("Model restored from file: %s" % self.saved_path,flush=True)    
 
     ## For extracting activity features
@@ -201,8 +201,10 @@ class Vid_Feature:
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 def distance(f_demo,f_robo):
+    norm_val=2
+    norm_pow=1
     distance_=np.linalg.norm(f_demo-f_robo,ord=norm_val)
-    return (distance_)
+    return pow(distance_,norm_pow)
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
@@ -219,7 +221,7 @@ def s2l(i_run):
     exploration_noise = OUNoise(env.action_space.shape[0])
     counter=0 
     total_reward=0
-    best_reward=-1000000000
+    best_reward=-10000
     
     print ("Number of Steps per episode:", steps)
     reward_st_per_episode = np.array([0])  #saving reward
@@ -251,6 +253,9 @@ def s2l(i_run):
         
         reward_per_episode = 0
         vid_robo_=[]
+
+        man_pos_x_st_per_step = np.array([0])
+        man_pos_y_st_per_step = np.array([0])
 
         for i in range(steps):
 
@@ -294,6 +299,17 @@ def s2l(i_run):
             eval_metric_st = np.append(eval_metric_st,eval_metric)           
             np.savetxt(base_dir+'eval_metric_per_step_run_'+str(i_run)+'.txt',eval_metric_st, newline="\n")
 
+            ## Printing and saving final mnaipulator position
+            manipulator_pos=env.get_man_pos()
+            print('Episode: ',episode,'step: ',i,'Manipulator position: ',manipulator_pos)
+
+            man_pos_x_st_per_step = np.append(man_pos_x_st_per_step,manipulator_pos[0])
+            np.savetxt(base_dir+'step_man_x_pos_run_'+str(i_run)+'_eps_'+str(episode)+'.txt',man_pos_x_st_per_step, fmt='%f', newline="\n")
+
+            man_pos_y_st_per_step = np.append(man_pos_y_st_per_step,manipulator_pos[1])
+            np.savetxt(base_dir+'step_man_y_pos_run_'+str(i_run)+'_eps_'+str(episode)+'.txt',man_pos_y_st_per_step, fmt='%f', newline="\n")
+        
+
             # Storing reward after every step
             reward_st_per_step = np.append(reward_st_per_step,reward)
             np.savetxt(base_dir+'reward_per_step_run_'+str(i_run)+'.txt',reward_st_per_step, newline="\n")
@@ -304,7 +320,7 @@ def s2l(i_run):
                 
             #train critic and actor network
             if counter > start_training: 
-                    agent.train()
+                agent.train() #
             print ('\n\n')
             print('Episode: ',episode,' Manipulator position: ',env.get_man_pos())
               
