@@ -44,48 +44,62 @@ crop_size=112
 cluster_length=16 
 nb_classes=2 
 feature_size=4608 
+layer_name=sys.argv[4]
+
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+## Printing all the experiment  hyper-parameters
+print('Switch:',sys.argv[3])
+print('Layer name:',sys.argv[4])
+
+
+
+
+
+
+
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 switch=int(sys.argv[3])
 if(switch==0):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps/rewardmap_misc/'
-    demo_folder='./Demos/demo_reach_0deg_new/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps/rewardmap_misc/'
+    demo_folder='../Demos/demo_reach_0deg_new/'
 elif (switch==1):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/rewardmap_3Dview1/'
-    demo_folder='./Demos/demo_reach_0deg_new/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/rewardmap_3Dview1/'
+    demo_folder='../Demos/demo_reach_0deg_new/'
 elif (switch==2):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/rewardmap_3Dview2/'
-    demo_folder='./Demos/demo_reach_0deg_new/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/rewardmap_3Dview2/'
+    demo_folder='../Demos/demo_reach_0deg_new/'
 elif (switch==3):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Traj_maps_rand_weights/lr_traj1/'
-    demo_folder='./Demos/demo_reach_0deg_new/' 
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Traj_maps_'+layer_name.split('/')[0]+'_20eps/lr_traj1/'
+    demo_folder='../Demos/demo_reach_0deg_new/' 
 elif (switch==4):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Traj_maps_rand_weights/ll_traj1/'
-    demo_folder='./Demos/demo_reach_0deg_new/' 
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Traj_maps_'+layer_name.split('/')[0]+'_20eps/ll_traj1/'
+    demo_folder='../Demos/demo_reach_0deg_new/' 
 elif (switch==5):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/multi_target_close/'
-    demo_folder='./Demos/demo_reach_0deg_new/' 
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/multi_target_close/'
+    demo_folder='../Demos/demo_reach_0deg_new/' 
 elif (switch==6):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/multi_target_far/'
-    demo_folder='./Demos/demo_reach_0deg_new/' 
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/multi_target_far/'
+    demo_folder='../Demos/demo_reach_0deg_new/' 
 elif (switch==-2):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Rewmaps_Conv5_norm2pow5_80eps/random_weights_V2/'
-    demo_folder='./Demos/demo_reach_180deg_new/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Traj_maps_'+layer_name.split('/')[0]+'_20eps/V2/'
+    demo_folder='../Demos/demo_reach_180deg_new/'
 elif (switch==-4):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/rewardmap_Obj2_new/'
-    demo_folder='./Demos/demo_reach_180deg_new/'  
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/rewardmap_Obj2_new/'
+    demo_folder='../Demos/demo_reach_180deg_new/'  
 elif (switch==-3):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/rewardmap_Obj1/'
-    demo_folder='./Demos/demo_reach_0deg_new/'  
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/rewardmap_Obj1/'
+    demo_folder='../Demos/demo_reach_0deg_new/'  
 elif (switch==-5):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Reward_Eval_Conv5_80eps_rand/rewardmap_BG/'
-    demo_folder='./Demos/demo_reach_0deg_new/' 
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Traj_maps_'+layer_name.split('/')[0]+'_20eps/BG/'
+    demo_folder='../Demos/demo_reach_0deg_new/' 
 elif (switch==-6):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Rewmaps_Conv5_norm2pow5_80eps/random_weights_M/'
-    demo_folder='./Demos/demo_reach_0deg_h.s/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Traj_maps_'+layer_name.split('/')[0]+'_20eps/M/'
+    demo_folder='../Demos/demo_reach_0deg_h.s/'
 else:
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Traj_maps_rand_weights/baseline/'
-    demo_folder='./Demos/demo_reach_0deg_new/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Traj_maps_'+layer_name.split('/')[0]+'_20eps/baseline/'
+    demo_folder='../Demos/demo_reach_0deg_new/'
   
 os.system('mkdir %s' % base_dir)
 
@@ -176,9 +190,13 @@ def sampling_obs(vid_robo_all,num_frames_per_clip=cluster_length):
 class Vid_Feature:
     
     def __init__(self):
-        self.saved_path='/home/ironman2/S2l_storage/trained_activity_nets_thesis/saved/' 
-        self.network_name='activity_model.ckpt-67.meta'
-        self.network_weigths_name='activity_model.ckpt-67'
+        #self.saved_path='/home/ironman2/S2l_storage/trained_activity_nets_thesis/saved/' 
+        #self.network_name='activity_model.ckpt-67.meta'
+        #self.network_weigths_name='activity_model.ckpt-67'
+
+        self.saved_path='/home/ironman2/S2l_storage/trained_C3D_MIME/' 
+        self.network_name='activity_model.ckpt-155.meta'
+        self.network_weigths_name='activity_model.ckpt-155'
         ### Activity_net
         self.g=tf.Graph()
         with self.g.as_default():
@@ -186,14 +204,14 @@ class Vid_Feature:
             self.sess = tf.InteractiveSession(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=False))
             ## Restore model weights from previously saved model
             self.saver = tf.train.import_meta_graph(os.path.join(self.saved_path,self.network_name))
-            #self.saver.restore(self.sess, os.path.join(self.saved_path,self.network_weigths_name))
+            #self.saver.restore(self.sess, os.path.join(self.saved_path,self.network_weigths_name)) 
             self.sess.run(tf.global_variables_initializer())
             print("Model restored from file: %s" % self.saved_path,flush=True)    
 
     ## For extracting activity features
     def feature_extractor(self,vid_np):
         self.vid_=vid_np.reshape(-1,cluster_length,height,width,channel)
-        f_v = self.sess.graph.get_tensor_by_name('flatten_1/Reshape:0')
+        f_v = self.sess.graph.get_tensor_by_name(layer_name) #('flatten_1/Reshape:0')
         self.f_v_val=np.array(self.sess.run([f_v], feed_dict={'conv1_input:0':self.vid_,'Placeholder:0':self.vid_,'dropout_1/keras_learning_phase:0':0 }))
         self.features=np.reshape(self.f_v_val,(-1))
         return self.features
