@@ -1,6 +1,7 @@
 import numpy as np
 import tensorflow as tf
 import math
+import os
 
 LEARNING_RATE = 0.0001
 BATCH_SIZE = 64
@@ -8,10 +9,11 @@ TAU = 0.001
 class ActorNet:
     """ Actor Network Model of DDPG Algorithm """
     
-    def __init__(self,num_states,num_actions):
+    def __init__(self,num_states,num_actions,policy_savepath):
         self.num_states=num_states
         self.num_actions=num_actions
-        self.policy_savepath="/home/ironman2/S2l_storage/policies_saved/Thesis_Ch4/Task1/Task1_0deg_obj/"
+        self.policy_savepath=policy_savepath
+        os.system('mkdir %s' % self.policy_savepath)
         self.g=tf.Graph()
         with self.g.as_default():
             self.sess = tf.InteractiveSession()

@@ -15,11 +15,12 @@ is_grad_inverter = True
 class DDPG:
     
     """ Deep Deterministic Policy Gradient Algorithm"""
-    def __init__(self,env, is_batch_norm,num_states,num_actions):
+    def __init__(self,env, is_batch_norm,num_states,num_actions,policy_savepath):
 	    
         self.env = env 
         self.num_states = num_states #env.observation_space.shape[0]
         self.num_actions = num_actions# env.action_space.shape[0]
+        self.policy_savepath=policy_savepath
         
         
         if is_batch_norm:
@@ -28,7 +29,7 @@ class DDPG:
             
         else:
             self.critic_net = CriticNet(self.num_states, self.num_actions) 
-            self.actor_net = ActorNet(self.num_states, self.num_actions)
+            self.actor_net = ActorNet(self.num_states, self.num_actions,self.policy_savepath)
         
         #Initialize Buffer Network:
         self.replay_memory = deque()

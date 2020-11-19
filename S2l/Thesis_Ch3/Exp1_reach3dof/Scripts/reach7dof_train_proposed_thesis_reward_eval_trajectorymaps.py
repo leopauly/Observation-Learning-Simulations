@@ -83,23 +83,29 @@ elif (switch==6):
     base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/multi_target_far/'
     demo_folder='../Demos/demo_reach_0deg_new/' 
 elif (switch==-2):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Traj_maps_'+layer_name.split('/')[0]+'_20eps/V2/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/V_new/'
     demo_folder='../Demos/demo_reach_180deg_new/'
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/V_new/'
 elif (switch==-4):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/rewardmap_Obj2_new/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/Obj2/'
     demo_folder='../Demos/demo_reach_180deg_new/'  
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/Obj2/'
 elif (switch==-3):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/rewardmap_Obj1/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/Obj1_new/'
     demo_folder='../Demos/demo_reach_0deg_new/'  
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/Obj1_new/'
 elif (switch==-5):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Traj_maps_'+layer_name.split('/')[0]+'_20eps/BG/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/BG/'
     demo_folder='../Demos/demo_reach_0deg_new/' 
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/BG/'
 elif (switch==-6):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Traj_maps_'+layer_name.split('/')[0]+'_20eps/M/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/M/'
     demo_folder='../Demos/demo_reach_0deg_h.s/'
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/M/'
 else:
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Traj_maps_'+layer_name.split('/')[0]+'_20eps/baseline/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/I_new/'
     demo_folder='../Demos/demo_reach_0deg_new/'
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/I_new/'
   
 os.system('mkdir %s' % base_dir)
 
@@ -190,13 +196,13 @@ def sampling_obs(vid_robo_all,num_frames_per_clip=cluster_length):
 class Vid_Feature:
     
     def __init__(self):
-        #self.saved_path='/home/ironman2/S2l_storage/trained_activity_nets_thesis/saved/' 
-        #self.network_name='activity_model.ckpt-67.meta'
-        #self.network_weigths_name='activity_model.ckpt-67'
+        self.saved_path='/home/ironman2/S2l_storage/trained_activity_nets_thesis/saved/models/' 
+        self.network_name='activity_model.ckpt-67.meta'
+        self.network_weigths_name='activity_model.ckpt-67'
 
-        self.saved_path='/home/ironman2/S2l_storage/trained_C3D_MIME/' 
-        self.network_name='activity_model.ckpt-155.meta'
-        self.network_weigths_name='activity_model.ckpt-155'
+        #self.saved_path='/home/ironman2/S2l_storage/trained_C3D_MIME/' 
+        #self.network_name='activity_model.ckpt-155.meta'
+        #self.network_weigths_name='activity_model.ckpt-155'
         ### Activity_net
         self.g=tf.Graph()
         with self.g.as_default():
@@ -204,8 +210,8 @@ class Vid_Feature:
             self.sess = tf.InteractiveSession(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=False))
             ## Restore model weights from previously saved model
             self.saver = tf.train.import_meta_graph(os.path.join(self.saved_path,self.network_name))
-            #self.saver.restore(self.sess, os.path.join(self.saved_path,self.network_weigths_name)) 
-            self.sess.run(tf.global_variables_initializer())
+            self.saver.restore(self.sess, os.path.join(self.saved_path,self.network_weigths_name)) 
+            #self.sess.run(tf.global_variables_initializer())
             print("Model restored from file: %s" % self.saved_path,flush=True)    
 
     ## For extracting activity features
@@ -235,7 +241,7 @@ def s2l(i_run):
     print ("Number of States:", num_states)
     print ("Number of Actions:", num_actions)
 
-    agent = DDPG(env, is_batch_norm,num_states,num_actions)
+    agent = DDPG(env, is_batch_norm,num_states,num_actions,policy_savepath)
     exploration_noise = OUNoise(env.action_space.shape[0])
     counter=0 
     total_reward=0
@@ -367,7 +373,7 @@ def s2l(i_run):
             print('best reward:',best_reward)
             print('current reward:',reward_per_episode)
             print('saving policy for episode..................:',episode)
-            #agent.save_actor(episode,i_run)
+            agent.save_actor(episode,i_run)
         
         ## Printing eval_metric after every step
         eval_metric=np.array(env.get_eval())

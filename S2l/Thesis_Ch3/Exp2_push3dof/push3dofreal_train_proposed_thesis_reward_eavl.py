@@ -34,15 +34,20 @@ import modelling as md
 
 switch=int(sys.argv[3])
 
-if (switch==0):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/Reward_Eval/Multi_targ_far/'
+if (switch==-1):
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/Proposed_dropout_1/I/'
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/I/'
+    demo_folder='./Demos/Demo_push_0deg/'
 
+os.system('mkdir %s' % base_dir)
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 ## Defining env
 switch=int(sys.argv[3])
 env = gym.make('Pusher3DOFReal-v1')
 env.switch=switch
+env.initialize_env()
+
 
 assert isinstance(env.observation_space, Box), "observation space must be continuous"
 assert isinstance(env.action_space, Box), "action space must be continuous"
@@ -63,7 +68,7 @@ crop_size=112
 cluster_length=16 # Length of one activity
 nb_classes=2 
 feature_size=4608
-demo_folder='./Demos/Demo_push_0deg/'
+
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 class Frame_Feature:

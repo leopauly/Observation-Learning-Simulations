@@ -10,12 +10,12 @@ import math
 
 class Saved_Policy:
     
-    def __init__(self,num_states,num_actions):
+    def __init__(self,num_states,num_actions,saved_model_num):
         #self.policy_savedpath="/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Proposed/180deg_10trial_60ps_0/best_policies/"
-        self.policy_savedpath="/home/ironman2/S2l_storage/policies_saved/thesis/Exp1/Oracle/10trials_0/"
+        self.policy_savedpath="/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_dropout_1/BG/"
         print("Model restored from file: %s" % self.policy_savedpath,flush=True)    
-        self.network_graph_name='policy.episode-212.meta'
-        self.network_name='policy.episode-212'
+        self.network_graph_name=('-'+str(saved_model_num)+'.meta') #policy.episode
+        self.network_name=('-'+str(saved_model_num))#policy.episode
         ### policy_net
         self.g=tf.Graph()
         with self.g.as_default():
