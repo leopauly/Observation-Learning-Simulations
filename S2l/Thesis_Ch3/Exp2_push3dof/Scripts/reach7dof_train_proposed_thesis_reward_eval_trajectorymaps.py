@@ -83,29 +83,29 @@ elif (switch==6):
     base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/multi_target_far/'
     demo_folder='../Demos/demo_reach_0deg_new/' 
 elif (switch==-2):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/Proposed/'+layer_name.split('/')[0]+'/V_new/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/Random/'+layer_name.split('/')[0]+'/V/'
     demo_folder='../Demos/Demo_push_180deg/'
-    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/V_new/'
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/V/'
 elif (switch==-4):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/Proposed/'+layer_name.split('/')[0]+'/Obj+V_new/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/Random/'+layer_name.split('/')[0]+'/Obj+V/'
     demo_folder='../Demos/Demo_push_180deg/'
-    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/Obj+V_new/'
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/Obj+V/'
 elif (switch==-3):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/Proposed/'+layer_name.split('/')[0]+'/Obj_new/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/Random/'+layer_name.split('/')[0]+'/Obj/'
     demo_folder='../Demos/Demo_push_0deg/'
-    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/Obj_new/'
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/Obj/'
 elif (switch==-5):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/Proposed/'+layer_name.split('/')[0]+'/BG/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/Random/'+layer_name.split('/')[0]+'/BG/'
     demo_folder='../Demos/Demo_push_0deg/'
     policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/BG/'
 elif (switch==-6):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/Proposed/'+layer_name.split('/')[0]+'/M_new/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/Random/'+layer_name.split('/')[0]+'/M/'
     demo_folder='../Demos/Demo_push_human/'
-    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/M_new/'
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/M/'
 else:
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/Proposed/'+layer_name.split('/')[0]+'/I_new/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/Random/'+layer_name.split('/')[0]+'/I/'
     demo_folder='../Demos/Demo_push_0deg/'
-    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/I_new/'
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/I/'
   
 os.system('mkdir %s' % base_dir)
 
@@ -203,6 +203,9 @@ class Vid_Feature:
         #self.saved_path='/home/ironman2/S2l_storage/trained_C3D_MIME/' 
         #self.network_name='activity_model.ckpt-155.meta'
         #self.network_weigths_name='activity_model.ckpt-155'
+
+        load_saved_weight=False
+
         ### Activity_net
         self.g=tf.Graph()
         with self.g.as_default():
@@ -210,8 +213,12 @@ class Vid_Feature:
             self.sess = tf.InteractiveSession(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=False))
             ## Restore model weights from previously saved model
             self.saver = tf.train.import_meta_graph(os.path.join(self.saved_path,self.network_name))
-            self.saver.restore(self.sess, os.path.join(self.saved_path,self.network_weigths_name)) 
-            #self.sess.run(tf.global_variables_initializer())
+            if (load_saved_weight):
+                print('Trained weights loaded')
+                self.saver.restore(self.sess, os.path.join(self.saved_path,self.network_weigths_name))
+            else:
+                print('Random weights loaded')
+                self.sess.run(tf.global_variables_initializer())
             print("Model restored from file: %s" % self.saved_path,flush=True)    
 
     ## For extracting activity features
@@ -287,7 +294,7 @@ def s2l(i_run):
 
             action = agent.evaluate_actor(np.reshape(x,[1,num_states]))
             action = action
-            noise = exploration_noise.noise()/(episode+1)
+            noise = exploration_noise.noise()#/(episode+1)
             action = action[0] + noise 
             print ('Action at',i_run ,'episode-',episode, 'step-', i ," :",action)
 
@@ -373,7 +380,7 @@ def s2l(i_run):
             print('best reward:',best_reward)
             print('current reward:',reward_per_episode)
             print('saving policy for episode..................:',episode)
-            agent.save_actor(episode,i_run)
+            #agent.save_actor(episode,i_run)
         
         ## Printing eval_metric after every step
         eval_metric=np.array(env.get_eval())
