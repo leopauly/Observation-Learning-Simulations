@@ -71,11 +71,13 @@ elif (switch==2):
     base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/rewardmap_3Dview2/'
     demo_folder='../Demos/demo_reach_0deg_new/'
 elif (switch==3):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Traj_maps_'+layer_name.split('/')[0]+'_20eps/lr_traj1/'
-    demo_folder='../Demos/demo_reach_0deg_new/' 
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/UCF101/'+layer_name.split('/')[0]+'/lr_thesis/'
+    policy_savepath='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/UCF101/'+layer_name.split('/')[0]+'/lr_thesis/'    
+    demo_folder='../Demos/Demo_push_0deg/'
 elif (switch==4):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Traj_maps_'+layer_name.split('/')[0]+'_20eps/ll_traj1/'
-    demo_folder='../Demos/demo_reach_0deg_new/' 
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/UCF101/'+layer_name.split('/')[0]+'/ll_thesis_new/'
+    policy_savepath='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/UCF101/'+layer_name.split('/')[0]+'/ll_thesis/'
+    demo_folder='../Demos/Demo_push_0deg/'
 elif (switch==5):
     base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/multi_target_close/'
     demo_folder='../Demos/demo_reach_0deg_new/' 
@@ -83,11 +85,11 @@ elif (switch==6):
     base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/multi_target_far/'
     demo_folder='../Demos/demo_reach_0deg_new/' 
 elif (switch==-2):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/Random/'+layer_name.split('/')[0]+'/V/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/MIME/'+layer_name.split('/')[0]+'/V_new_new1/'
     demo_folder='../Demos/Demo_push_180deg/'
     policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/V/'
 elif (switch==-4):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/Random/'+layer_name.split('/')[0]+'/Obj+V/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp2_push3dof/Results/MIME/'+layer_name.split('/')[0]+'/Obj+V_new_nw/'
     demo_folder='../Demos/Demo_push_180deg/'
     policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/Obj+V/'
 elif (switch==-3):
@@ -204,7 +206,7 @@ class Vid_Feature:
         #self.network_name='activity_model.ckpt-155.meta'
         #self.network_weigths_name='activity_model.ckpt-155'
 
-        load_saved_weight=False
+        load_saved_weight=True
 
         ### Activity_net
         self.g=tf.Graph()

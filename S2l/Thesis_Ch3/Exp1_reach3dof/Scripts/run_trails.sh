@@ -33,7 +33,16 @@ echo $filename
  #python $filename 3 6 -6 dropout_1/cond/Merge:0 #flatten_1/Reshape:0
  #python $filename 6 10 -6 dropout_1/cond/Merge:0 #flatten_1/Reshape:0
 
-python $filename 1 2 -5 dropout_1/cond/Merge:0  #flatten_1/Reshape:0
+ #python $filename 0 3 3 flatten_1/Reshape:0  #flatten_1/Reshape:0
+ #python $filename 3 6 3 flatten_1/Reshape:0 #flatten_1/Reshape:0
+ #python $filename 6 10 3  flatten_1/Reshape:0 #flatten_1/Reshape:0
+
+python $filename 0 3 3 dropout_1/cond/Merge:0  #flatten_1/Reshape:0
+python $filename 3 6 3 dropout_1/cond/Merge:0 #flatten_1/Reshape:0
+python $filename 6 10 3 dropout_1/cond/Merge:0 #flatten_1/Reshape:0
+
+
+
 
 
 echo "---------------------------------------------"

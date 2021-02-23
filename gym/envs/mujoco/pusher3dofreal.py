@@ -12,7 +12,7 @@ class PusherEnv3DOFReal(mujoco_env.MujocoEnv, utils.EzPickle):
         utils.EzPickle.__init__(self)
 
     def initialize_env(self):
-        if(self.switch==0):  #Baseline #Misc=-1000
+        if(self.switch==0):  #Misc 
             mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_reward_eval_reward_map.xml', 5, viewersize=(72*5, 128*5))
         elif(self.switch==3):
             mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_reward_eval_targetpos_1.xml', 5, viewersize=(72*5, 128*5))
@@ -23,15 +23,15 @@ class PusherEnv3DOFReal(mujoco_env.MujocoEnv, utils.EzPickle):
         elif(self.switch==6):
             mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_reward_eval_multi_target_far.xml', 5, viewersize=(72*5, 128*5))
         elif(self.switch==-4):
-            mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp2_Obj2.xml', 5, viewersize=(72*5, 128*5))
+            mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_Obj2.xml', 5, viewersize=(72*5, 128*5))
         elif(self.switch==-5):
-            mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp2_BG.xml', 5, viewersize=(72*5, 128*5))
+            mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_BG.xml', 5, viewersize=(72*5, 128*5))
         elif(self.switch==-3):
-            mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp2_Obj1.xml', 5, viewersize=(72*5, 128*5))
+            mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_Obj1.xml', 5, viewersize=(72*5, 128*5))
         elif(self.switch==1 or self.switch==2):
             mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1.xml', 5, viewersize=(72*5, 128*5))
-        else: # Baseline  switch =-1 (normal)
-            mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_orginal.xml', 5, viewersize=(72*5, 128*5))
+        else: # Baseline  switch =-100,-10000
+            mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1.xml', 5, viewersize=(72*5, 128*5))
         
 
     def _step(self, a):
@@ -190,13 +190,12 @@ class PusherEnv3DOFReal(mujoco_env.MujocoEnv, utils.EzPickle):
         ])
 
     def get_eval(self):
-        self.arm_pos=self.get_body_com("object")   #hide this when running exp1
-        #self.arm_pos=self.get_body_com("distal_4")  #hide this when running exp2
+        #self.arm_pos=self.get_body_com("object")   #hide this when running exp1
+        self.arm_pos=self.get_body_com("distal_4")  #hide this when running exp2
         self.goal_pos=self.get_body_com("goal")
         self.eval=np.linalg.norm(self.arm_pos-self.goal_pos)
         return self.eval
 
     def get_man_pos(self):
-        #arm_position=self.get_body_com("distal_4") #hide this when running exp2
-        arm_position=self.get_body_com("object") #hide this when running exp1
+        arm_position=self.get_body_com("distal_4")
         return np.array(arm_position)

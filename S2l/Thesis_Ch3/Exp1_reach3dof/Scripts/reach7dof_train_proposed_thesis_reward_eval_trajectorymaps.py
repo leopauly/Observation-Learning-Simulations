@@ -71,10 +71,12 @@ elif (switch==2):
     base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/rewardmap_3Dview2/'
     demo_folder='../Demos/demo_reach_0deg_new/'
 elif (switch==3):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Traj_maps_'+layer_name.split('/')[0]+'_20eps/lr_traj1/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Traj_maps_'+layer_name.split('/')[0]+'_20eps/lr_thesis/'
+    policy_savepath='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Traj_maps_'+layer_name.split('/')[0]+'_20eps/lr_thesis/'
     demo_folder='../Demos/demo_reach_0deg_new/' 
 elif (switch==4):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Traj_maps_'+layer_name.split('/')[0]+'_20eps/ll_traj1/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Traj_maps_'+layer_name.split('/')[0]+'_20eps/ll_thesis_new/'
+    policy_savepath='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Traj_maps_'+layer_name.split('/')[0]+'_20eps/ll_thesis/'
     demo_folder='../Demos/demo_reach_0deg_new/' 
 elif (switch==5):
     base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/multi_target_close/'
@@ -373,7 +375,7 @@ def s2l(i_run):
             print('best reward:',best_reward)
             print('current reward:',reward_per_episode)
             print('saving policy for episode..................:',episode)
-            agent.save_actor(episode,i_run)
+             #agent.save_actor(episode,i_run)
         
         ## Printing eval_metric after every step
         eval_metric=np.array(env.get_eval())
