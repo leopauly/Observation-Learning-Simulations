@@ -52,24 +52,21 @@ layer_name=sys.argv[4]
 print('Switch:',sys.argv[3])
 print('Layer name:',sys.argv[4])
 
-
-
-
-
-
-
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 switch=int(sys.argv[3])
 if(switch==0):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps/rewardmap_misc/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/BG-B_new5/'
     demo_folder='../Demos/demo_reach_0deg_new/'
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Exp1/Proposed/Proposed_'+layer_name.split('/')[0]+'/BG-B_new5/'
 elif (switch==1):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/rewardmap_3Dview1/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/3DV2_new2/'
     demo_folder='../Demos/demo_reach_0deg_new/'
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Exp1/Proposed/Proposed_'+layer_name.split('/')[0]+'/3DV2_new2/'
 elif (switch==2):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/rewardmap_3Dview2/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/3DV2_new3/'
     demo_folder='../Demos/demo_reach_0deg_new/'
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Exp1/Proposed/Proposed_'+layer_name.split('/')[0]+'/3DV2_new3/'
 elif (switch==3):
     base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Traj_maps_'+layer_name.split('/')[0]+'_20eps/lr_thesis/'
     policy_savepath='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Traj_maps_'+layer_name.split('/')[0]+'_20eps/lr_thesis/'
@@ -81,19 +78,20 @@ elif (switch==4):
 elif (switch==5):
     base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/multi_target_close/'
     demo_folder='../Demos/demo_reach_0deg_new/' 
+
 elif (switch==6):
     base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/multi_target_far/'
     demo_folder='../Demos/demo_reach_0deg_new/' 
 elif (switch==-2):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/V_new/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/'+layer_name.split('/')[0]+'/BG-A+V/'
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Exp1/Proposed/Proposed_'+layer_name.split('/')[0]+'/BG-A+V/'
     demo_folder='../Demos/demo_reach_180deg_new/'
-    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/V_new/'
 elif (switch==-4):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/Obj2/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/'+layer_name.split('/')[0]+'/Obj2/'
     demo_folder='../Demos/demo_reach_180deg_new/'  
     policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/Obj2/'
 elif (switch==-3):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/Obj1_new/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/'+layer_name.split('/')[0]+'/Obj1/'
     demo_folder='../Demos/demo_reach_0deg_new/'  
     policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/Obj1_new/'
 elif (switch==-5):
@@ -101,13 +99,13 @@ elif (switch==-5):
     demo_folder='../Demos/demo_reach_0deg_new/' 
     policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/BG/'
 elif (switch==-6):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/M/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/'+layer_name.split('/')[0]+'/M_new/'
     demo_folder='../Demos/demo_reach_0deg_h.s/'
     policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/M/'
 else:
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/I_new/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/'+layer_name.split('/')[0]+'/BG-A_new1/'
     demo_folder='../Demos/demo_reach_0deg_new/'
-    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/I_new/'
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Exp1/Proposed/Proposed_'+layer_name.split('/')[0]+'/BG-A_new1/'
   
 os.system('mkdir %s' % base_dir)
 
@@ -289,7 +287,7 @@ def s2l(i_run):
 
             action = agent.evaluate_actor(np.reshape(x,[1,num_states]))
             action = action+1
-            noise = exploration_noise.noise()#/(episode+1)
+            noise = exploration_noise.noise()/(episode+1)
             action = action[0] + noise 
             print ('Action at',i_run ,'episode-',episode, 'step-', i ," :",action)
 
@@ -375,7 +373,7 @@ def s2l(i_run):
             print('best reward:',best_reward)
             print('current reward:',reward_per_episode)
             print('saving policy for episode..................:',episode)
-             #agent.save_actor(episode,i_run)
+            agent.save_actor(episode,i_run)
         
         ## Printing eval_metric after every step
         eval_metric=np.array(env.get_eval())
