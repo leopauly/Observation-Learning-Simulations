@@ -13,7 +13,8 @@ class PusherEnv3DOFReal(mujoco_env.MujocoEnv, utils.EzPickle):
 
     def initialize_env(self):
         if(self.switch==0):  # Baseline
-	        mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_bgcolor-b.xml', 5, viewersize=(72*5, 128*5)) 
+	        mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_m4dof.xml', 5, viewersize=(72*5, 128*5)) 			
+            #mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_bgcolor-b.xml', 5, viewersize=(72*5, 128*5)) 
             #mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_reward_eval_reward_map.xml', 5, viewersize=(72*5, 128*5))
         elif(self.switch==3):
             mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_reward_eval_targetpos_1.xml', 5, viewersize=(72*5, 128*5))
@@ -32,7 +33,8 @@ class PusherEnv3DOFReal(mujoco_env.MujocoEnv, utils.EzPickle):
         elif(self.switch==1 or self.switch==2):
             mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1.xml', 5, viewersize=(72*5, 128*5))
         else: #Misc  switch =-100,-10000
-            mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_bgcolor-a.xml', 5, viewersize=(72*5, 128*5))
+            mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_m4dof.xml', 5, viewersize=(72*5, 128*5)) 
+            #mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp1_bgcolor-a.xml', 5, viewersize=(72*5, 128*5))
         
 
     def _step(self, a):
@@ -86,7 +88,7 @@ class PusherEnv3DOFReal(mujoco_env.MujocoEnv, utils.EzPickle):
             self.viewer.cam.distance = 3.0
             self.viewer.cam.elevation= -90
             self.viewer.cam.azimuth= -90
-            self.viewer.cam.lookat[0]-=1.5  
+            self.viewer.cam.lookat[0]-=1.15 ##(1.15 for m4dof and 1.5 for all other cases of swith==0)
             self.viewer.cam.lookat[1]-=1.7
 
         elif (self.switch==1):
@@ -131,7 +133,7 @@ class PusherEnv3DOFReal(mujoco_env.MujocoEnv, utils.EzPickle):
             self.viewer.cam.distance = 3.0
             self.viewer.cam.elevation= -90
             self.viewer.cam.azimuth= -90
-            self.viewer.cam.lookat[0]-=1.5
+            self.viewer.cam.lookat[0]-=1.15 ##(1.15 for m4dof and 1.5 for all other cases of swith==0)
             self.viewer.cam.lookat[1]-=1.7
         '''
 

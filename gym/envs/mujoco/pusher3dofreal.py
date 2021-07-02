@@ -13,7 +13,8 @@ class PusherEnv3DOFReal(mujoco_env.MujocoEnv, utils.EzPickle):
 
     def initialize_env(self):
         if(self.switch==0):  #Baseline #Misc=-1000
-            mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_orginal_bg_colour-b.xml', 5, viewersize=(72*5, 128*5))
+            mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_orginal_4dof.xml', 5, viewersize=(72*5, 128*5))
+            #mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_orginal_bg_colour-b.xml', 5, viewersize=(72*5, 128*5))
             #mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_orginal_bg_colour.xml', 5, viewersize=(72*5, 128*5))
         elif(self.switch==3):
             mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_exp2_reward_eval_targetpos_1.xml', 5, viewersize=(72*5, 128*5))
@@ -32,7 +33,8 @@ class PusherEnv3DOFReal(mujoco_env.MujocoEnv, utils.EzPickle):
         elif(self.switch==1 or self.switch==2):
             mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_orginal_bg_colour_with_v.xml', 5, viewersize=(72*5, 128*5))
         else: # Baseline  switch =-1 (normal)
-            mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_orginal_bg_colour-a.xml', 5, viewersize=(72*5, 128*5))
+            mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_orginal_4dof.xml', 5, viewersize=(72*5, 128*5))
+            #mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_orginal_bg_colour-a.xml', 5, viewersize=(72*5, 128*5))
             #mujoco_env.MujocoEnv.__init__(self, '3link_gripper_push_2d_real_orginal.xml', 5, viewersize=(72*5, 128*5))
         
 
@@ -87,7 +89,7 @@ class PusherEnv3DOFReal(mujoco_env.MujocoEnv, utils.EzPickle):
             self.viewer.cam.distance = 3.0
             self.viewer.cam.elevation= -90
             self.viewer.cam.azimuth= -90
-            self.viewer.cam.lookat[0]-=1.5  
+            self.viewer.cam.lookat[0]-=1.15 ##(1.15 for m4dof and 1.5 for all other cases of swith==0)
             self.viewer.cam.lookat[1]-=1.7
 
         elif (self.switch==1):

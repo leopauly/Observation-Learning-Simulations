@@ -5,7 +5,7 @@ import imageio
 import numpy as np
 
 env = gym.make('Pusher3DOFReal-v1')
-env.switch=3
+env.switch=0
 env.initialize_env()
 env.reset()
 input('Press key')

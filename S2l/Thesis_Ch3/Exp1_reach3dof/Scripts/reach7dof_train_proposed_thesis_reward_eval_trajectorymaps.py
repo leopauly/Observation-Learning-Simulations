@@ -56,9 +56,9 @@ print('Layer name:',sys.argv[4])
 
 switch=int(sys.argv[3])
 if(switch==0):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/BG-B_new5/'
     demo_folder='../Demos/demo_reach_0deg_new/'
-    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Exp1/Proposed/Proposed_'+layer_name.split('/')[0]+'/BG-B_new5/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/M4dof/'
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Exp1/Proposed/Proposed_'+layer_name.split('/')[0]+'/M4dof/'
 elif (switch==1):
     base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/3DV2_new2/'
     demo_folder='../Demos/demo_reach_0deg_new/'
@@ -78,13 +78,12 @@ elif (switch==4):
 elif (switch==5):
     base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/multi_target_close/'
     demo_folder='../Demos/demo_reach_0deg_new/' 
-
 elif (switch==6):
     base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/Reward_Eval_Conv5_20eps_rand/multi_target_far/'
     demo_folder='../Demos/demo_reach_0deg_new/' 
 elif (switch==-2):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/'+layer_name.split('/')[0]+'/BG-A+V/'
-    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Exp1/Proposed/Proposed_'+layer_name.split('/')[0]+'/BG-A+V/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/M4dof+V/'
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Exp1/Proposed/Proposed_'+layer_name.split('/')[0]+'/M4dof+V/'
     demo_folder='../Demos/demo_reach_180deg_new/'
 elif (switch==-4):
     base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/'+layer_name.split('/')[0]+'/Obj2/'
@@ -99,9 +98,9 @@ elif (switch==-5):
     demo_folder='../Demos/demo_reach_0deg_new/' 
     policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/BG/'
 elif (switch==-6):
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/'+layer_name.split('/')[0]+'/M_new/'
     demo_folder='../Demos/demo_reach_0deg_h.s/'
-    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Proposed_'+layer_name.split('/')[0]+'/M/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/M4dof+M/'
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Exp1/Proposed/Proposed_'+layer_name.split('/')[0]+'/M4dof+M/'
 else:
     base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_Random/'+layer_name.split('/')[0]+'/BG-A_new1/'
     demo_folder='../Demos/demo_reach_0deg_new/'
@@ -237,7 +236,7 @@ def s2l(i_run):
 
     #Randomly initialize critic,actor,target critic, target actor network  and replay buffer   
     num_states = feature_size   #num_states = env.observation_space.shape[0]
-    num_actions = env.action_space.shape[0]   
+    num_actions = env.action_space.shape[0]  
     print ("Number of States:", num_states)
     print ("Number of Actions:", num_actions)
 
@@ -286,8 +285,10 @@ def s2l(i_run):
             x = observation
 
             action = agent.evaluate_actor(np.reshape(x,[1,num_states]))
-            action = action+1
-            noise = exploration_noise.noise()/(episode+1)
+            action = action-[-2,1,1,1] # for Mdof4
+            #action = action+1 # for rest of everything  
+            noise = exploration_noise.noise()/(episode+1) # for rest of everything 
+            #noise = -(exploration_noise.noise()*math.exp(episode)) # for Mdof4
             action = action[0] + noise 
             print ('Action at',i_run ,'episode-',episode, 'step-', i ," :",action)
 
