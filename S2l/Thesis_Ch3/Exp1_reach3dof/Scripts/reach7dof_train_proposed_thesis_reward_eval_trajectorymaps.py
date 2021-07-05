@@ -57,8 +57,8 @@ print('Layer name:',sys.argv[4])
 switch=int(sys.argv[3])
 if(switch==0):
     demo_folder='../Demos/demo_reach_0deg_new/'
-    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/M4dof/'
-    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Exp1/Proposed/Proposed_'+layer_name.split('/')[0]+'/M4dof/'
+    base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/M4dof_random/'
+    policy_savepath= '/home/ironman2/S2l_storage/policies_saved/thesis/Exp1/Proposed/Proposed_'+layer_name.split('/')[0]+'/M4dof_random/'
 elif (switch==1):
     base_dir='/home/ironman2/Observation-Learning-Simulations/S2l/Thesis_Ch3/Exp1_reach3dof/Results/Results_UCF/Proposed/'+layer_name.split('/')[0]+'/3DV2_new2/'
     demo_folder='../Demos/demo_reach_0deg_new/'
@@ -209,8 +209,8 @@ class Vid_Feature:
             self.sess = tf.InteractiveSession(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=False))
             ## Restore model weights from previously saved model
             self.saver = tf.train.import_meta_graph(os.path.join(self.saved_path,self.network_name))
-            self.saver.restore(self.sess, os.path.join(self.saved_path,self.network_weigths_name)) 
-            #self.sess.run(tf.global_variables_initializer())
+            #self.saver.restore(self.sess, os.path.join(self.saved_path,self.network_weigths_name)) 
+            self.sess.run(tf.global_variables_initializer())
             print("Model restored from file: %s" % self.saved_path,flush=True)    
 
     ## For extracting activity features
@@ -374,7 +374,7 @@ def s2l(i_run):
             print('best reward:',best_reward)
             print('current reward:',reward_per_episode)
             print('saving policy for episode..................:',episode)
-            agent.save_actor(episode,i_run)
+            #agent.save_actor(episode,i_run)
         
         ## Printing eval_metric after every step
         eval_metric=np.array(env.get_eval())

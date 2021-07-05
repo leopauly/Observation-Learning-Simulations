@@ -13,7 +13,8 @@ echo $filename
 #python $filename 3 6 -2 dropout_1/cond/Merge:0 #flatten_1/Reshape:0
 #python $filename 6 10 -2 dropout_1/cond/Merge:0 #flatten_1/Reshape:0
 
-python $filename 8 9 -2 flatten_1/Reshape:0  #flatten_1/Reshape:0
-
+python $filename 0 3 0 flatten_1/Reshape:0  #flatten_1/Reshape:0
+python $filename 3 6 0 flatten_1/Reshape:0 #flatten_1/Reshape:0
+python $filename 6 10 0 flatten_1/Reshape:0 #flatten_1/Reshape:0
 
 echo "---------------------------------------------"
